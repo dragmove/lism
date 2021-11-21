@@ -3,7 +3,7 @@ const nodeExternals = require("webpack-node-externals");
 const tsTransformPaths = require("@zerollup/ts-transform-paths");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
-https: module.exports = {
+module.exports = {
   mode: "production",
   target: "node",
   entry: {
@@ -39,5 +39,7 @@ https: module.exports = {
   output: {
     filename: "index.js",
     path: path.resolve(__dirname, "dist"),
+    library: "lism",
+    libraryTarget: "umd",
   },
 };
