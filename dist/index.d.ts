@@ -1,1 +1,2 @@
-export declare function isDefined(val: unknown): boolean;
+import { isDefined } from "./utils/common";
+export { isDefined };

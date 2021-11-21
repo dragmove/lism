@@ -1,11 +1,12 @@
 {
   "name": "lism",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Bundle of Typescript util Library to help developers.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "rimraf ./dist && webpack --config webpack.config.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,16 @@
   "homepage": "https://github.com/dragmove/lism#readme",
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
-    "typescript": "^4.5.2"
+    "@types/jest": "^27.0.3",
+    "@zerollup/ts-transform-paths": "^1.7.18",
+    "jest": "^27.3.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.7",
+    "ts-loader": "^9.2.6",
+    "ts-transform-paths": "^2.0.3",
+    "tsconfig-paths-webpack-plugin": "^3.5.2",
+    "typescript": "^4.5.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }

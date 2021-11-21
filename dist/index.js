@@ -1,10 +1,1 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.isDefined = void 0;
-// TODO: Add comments to make api documents
-function isDefined(val) {
-    if (val === null || typeof val === "undefined")
-        return false;
-    return true;
-}
-exports.isDefined = isDefined;
+(()=>{"use strict";var e={372:(e,r)=>{Object.defineProperty(r,"__esModule",{value:!0}),r.isDefined=void 0,r.isDefined=function(e){return null!=e}}},r={};!function t(i){var n=r[i];if(void 0!==n)return n.exports;var o=r[i]={exports:{}};return e[i](o,o.exports,t),o.exports}(372)})();
