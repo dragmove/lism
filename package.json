@@ -1,0 +1,36 @@
+{
+  "name": "lism",
+  "version": "0.0.1",
+  "description": "A Bundle of Typescript util Library to help developers.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dragmove/lism.git"
+  },
+  "keywords": [
+    "lism",
+    "util",
+    "typescript",
+    "ts",
+    "dragmove"
+  ],
+  "author": {
+    "name": "Hyunseok.Kim",
+    "email": "dragmove@gmail.com",
+    "url": "https://dragmove-df96f.firebaseapp.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dragmove/lism/issues",
+    "email": "dragmove@gmail.com"
+  },
+  "homepage": "https://github.com/dragmove/lism#readme",
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
+    "typescript": "^4.5.2"
+  }
+}
