@@ -1,7 +1,7 @@
-import path from 'path';
-import nodeExternals from 'webpack-node-externals';
-import tsTransformPaths from '@zerollup/ts-transform-paths';
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
+const tsTransformPaths = require('@zerollup/ts-transform-paths');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   mode: 'production',

@@ -1,6 +1,6 @@
 {
   "name": "lism",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A Bundle of Typescript util Library to help developers.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -55,7 +55,7 @@
     "webpack-node-externals": "^3.0.0"
   },
   "lint-staged": {
-    "*.{js,ts}": [
+    "./src/**/*.{js,ts}": [
       "npm run format",
       "npm run lint"
     ]
