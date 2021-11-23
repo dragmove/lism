@@ -12,6 +12,6 @@
  * console.log(isDefined(0)); // true
  */
 export function isDefined(val: unknown): boolean {
-  if (val === null || typeof val === "undefined") return false;
+  if (val == null || typeof val === 'undefined') return false;
   return true;
 }

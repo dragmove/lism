@@ -6,6 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf ./dist && webpack --config webpack.config.js",
+    "lint": "eslint --ext .ts ./src",
+    "format": "prettier --write ./src",
     "test": "jest",
     "prepare": "husky install"
   },
@@ -34,9 +36,15 @@
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
     "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "@zerollup/ts-transform-paths": "^1.7.18",
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.0",
     "jest": "^27.3.1",
+    "lint-staged": "^12.1.2",
+    "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.6",
@@ -45,5 +53,11 @@
     "typescript": "^4.5.2",
     "webpack-cli": "^4.9.1",
     "webpack-node-externals": "^3.0.0"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "npm run format",
+      "npm run lint"
+    ]
   }
 }
