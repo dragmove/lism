@@ -1,2 +1,2 @@
-import { isDefined } from "./utils/common";
-export { isDefined };
+import { isDefined, deepFreeze } from "./utils/common";
+export { isDefined, deepFreeze };
