@@ -9,8 +9,7 @@
     "lint": "eslint --ext .ts ./src",
     "format": "prettier --write ./src",
     "test": "jest",
-    "test:watch": "jest --watchAll",
-    "prepare": "husky install"
+    "test:watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
