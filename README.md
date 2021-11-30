@@ -8,4 +8,5 @@
 
 ```sh
 npm install lism --save
+yarn add lism
 ```
