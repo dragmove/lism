@@ -17,4 +17,5 @@ const useDelayedCallback = (delay: number): ((callback: any) => any) => {
 export default useDelayedCallback;
 
 // FIXME: Define types
-// FIXME: make test cases
+// FIXME: Make test cases
+// FIXME: Add documentation comments

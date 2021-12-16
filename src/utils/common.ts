@@ -25,7 +25,6 @@ export function isDefined(val: unknown): boolean {
  * @example
  * console.log(deepFreeze({ a: 1, b: 'foo', c: { ca: 1, cb: 'foo' }));
  */
-
 export function deepFreeze<T>(obj: T): T {
   // Ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
   const propNames: string[] = Object.getOwnPropertyNames(obj);
