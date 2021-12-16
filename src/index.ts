@@ -1,3 +1,5 @@
-import { isDefined, deepFreeze } from '@utils/common';
+import { deepFreeze, isDefined } from '@utils/common';
+import { DelayedFallback } from './components';
+import useDelayedCallback from './hooks/useDelayedCallback';
 
-export { isDefined, deepFreeze };
+export { isDefined, deepFreeze, useDelayedCallback, DelayedFallback };

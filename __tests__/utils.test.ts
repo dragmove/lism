@@ -1,6 +1,6 @@
 import { isDefined, deepFreeze } from '@utils/common';
 
-describe('common', () => {
+describe('utils', () => {
   describe('isDefined()', () => {
     it('input undefined, return false', () => {
       expect(isDefined(undefined)).toEqual(false);
