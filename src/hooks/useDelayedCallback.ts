@@ -1,6 +1,18 @@
 import { useEffect, useState } from 'react';
 
-const useDelayedCallback = (delay: number): ((callback: any) => any) => {
+/**
+ * Return a delayed callback custom hook
+ *
+ * @function useDelayedCallback
+ * @param {number} delay - millisecond
+ * @returns {(callback: () => unknown) => unknown}
+ * @example
+ * const delayedCallback = useDelayedCallback(1000);
+ * delayedCallback(() => console.log('foo'));
+ */
+const useDelayedCallback = (
+  delay: number
+): ((callback: () => unknown) => unknown) => {
   const [isDelayed, setIsDelayed] = useState<boolean>(true);
 
   useEffect(() => {
@@ -8,14 +20,9 @@ const useDelayedCallback = (delay: number): ((callback: any) => any) => {
     return () => clearTimeout(timeoutId);
   }, [delay]);
 
-  const delayedCallback = (callback: any): any =>
+  const delayedCallback = (callback: () => unknown): unknown =>
     !isDelayed && callback.apply(null);
-
   return delayedCallback;
 };
 
 export default useDelayedCallback;
-
-// FIXME: Define types
-// FIXME: Make test cases
-// FIXME: Add documentation comments
