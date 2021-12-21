@@ -1,5 +1,5 @@
-import useDelayedRender from '../../hooks/useDelayedCallback';
 import React, { ReactNode } from 'react';
+import useDelayedCallback from '../../hooks/useDelayedCallback';
 
 interface PropTypes {
   children: ReactNode;
@@ -8,19 +8,15 @@ interface PropTypes {
   fallbackDelay?: number;
 }
 
+// TODO: Add comments for documentation
 const DelayedFallback = ({
   children,
   isReadyToRender = false,
   fallback,
   fallbackDelay = 200,
 }: PropTypes): any => {
-  const delayedRender = useDelayedRender(fallbackDelay);
-
-  return isReadyToRender ? <>{children}</> : delayedRender(() => fallback);
+  const delayedCallback = useDelayedCallback(fallbackDelay);
+  return isReadyToRender ? <>{children}</> : delayedCallback(() => fallback);
 };
 
 export default DelayedFallback;
-
-// FIXME: Define types
-// FIXME: Make test cases
-// FIXME: Add documentation comments

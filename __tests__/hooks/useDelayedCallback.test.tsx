@@ -31,11 +31,13 @@ describe('useDelayedCallback', () => {
       return null;
     }
     render(<Component />);
+
     expect(data).toBe(null);
 
     act(() => {
       jest.advanceTimersByTime(1500);
     });
+
     expect(data).toBe('foo');
   });
 });
