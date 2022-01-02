@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 
 /**
- * Return a delayed callback custom hook
+ * Custom hook return a delayed callback
  *
  * @function useDelayedCallback
  * @param {number} delay - millisecond
- * @returns {(callback: () => unknown) => unknown}
+ * @returns {(callback: () => void) => void | false}
  * @example
  * const delayedCallback = useDelayedCallback(1000);
  * delayedCallback(() => console.log('foo'));
  */
 const useDelayedCallback = (
   delay: number
-): ((callback: () => unknown) => unknown) => {
+): ((callback: () => void) => void | false) => {
   const [isDelayed, setIsDelayed] = useState<boolean>(true);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const useDelayedCallback = (
     return () => clearTimeout(timeoutId);
   }, [delay]);
 
-  const delayedCallback = (callback: () => unknown): unknown =>
+  const delayedCallback = (callback: () => void): void | false =>
     !isDelayed && callback.apply(null);
   return delayedCallback;
 };
