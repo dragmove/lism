@@ -8,5 +8,8 @@
 node_modules
 npm-debug.log
 
+# coverage drectories
+coverage
+
 # misc
 .DS_Store
