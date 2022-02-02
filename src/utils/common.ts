@@ -218,3 +218,55 @@ pluck(users, 'age') // [30, 20, 15, ...]
 function pluck(data: any, key: string) {
   return map(data, _get(key));
 }
+
+// FIXME: 220203
+/* 
++ examples
+find(users, (user) => user.age > 30)
+
+const _find = curryr2(find);
+
+_get(
+  find(users, (user) => user.id == 99), 
+  'name'
+)
+
+go(
+  users,
+  _find((user) => user.id === 99),
+  _get('name'),
+  console.log
+)
+*/
+function find(
+  list: any[],
+  predicateFn: (item: any) => boolean
+): any | undefined {
+  const _keys: any[] = keys(list); // list parameter로 object를 전달받더라도 처리할 수 있도록 다형성을 높여준다.
+
+  for (let i = 0, len = keys.length; i < len; i++) {
+    const val: any = list[_keys[i]];
+    if (predicateFn(val)) return val;
+  }
+
+  return undefined;
+}
+
+function findIndex(list: any[], predicateFn: (item: any) => boolean): number {
+  const _keys: any[] = keys(list); // list parameter로 object를 전달받더라도 처리할 수 있도록 다형성을 높여준다.
+
+  for (let i = 0, len = keys.length; i < len; i++) {
+    const val: any = list[_keys[i]];
+    if (predicateFn(val)) return i;
+  }
+
+  return -1;
+}
+
+function some(list: any[], predicateFn: (item: any) => boolean): boolean {
+  return findIndex(list, predicateFn || identity) !== -1;
+}
+
+function every(list: any[], predicateFn: (item: any) => boolean): boolean {
+  return findIndex(list, negate(predicateFn || identity)) === -1;
+}
