@@ -270,3 +270,28 @@ function some(list: any[], predicateFn: (item: any) => boolean): boolean {
 function every(list: any[], predicateFn: (item: any) => boolean): boolean {
   return findIndex(list, negate(predicateFn || identity)) === -1;
 }
+
+/* 
++ examples
+min([1, 2, 99, 4, -1]);
+minBy([1, 2, 99, 4, -1], Math.abs);
+*/
+function min(list: any[]): any {
+  return reduce(list, (memo, item) => (memo < item ? memo : item));
+}
+
+function max(list: any[]): any {
+  return reduce(list, (memo, item) => (memo > item ? memo : item));
+}
+
+function minBy(list: any[], iterateeFn: (item: any) => void): any {
+  return reduce(list, (memo, item) =>
+    iterateeFn(memo) < iterateeFn(item) ? memo : item
+  );
+}
+
+function maxBy(list: any[], iterateeFn: (item: any) => void): any {
+  return reduce(list, (memo, item) =>
+    iterateeFn(memo) > iterateeFn(item) ? memo : item
+  );
+}
