@@ -1,7 +1,7 @@
 language: node_js
 
-node_js :
-  - node
+node_js:
+  - 16
 
 install:
   - npm install
@@ -15,8 +15,8 @@ before_deploy:
 
 deploy:
   provider: npm
-  email: "$NPM_EMAIL"
-  api_key: "$NPM_TOKEN"
+  email: '$NPM_EMAIL'
+  api_key: '$NPM_TOKEN'
   skip_cleanup: true
   on:
     branch: main
