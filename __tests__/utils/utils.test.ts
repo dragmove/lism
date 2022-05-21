@@ -1,4 +1,4 @@
-import { isDefined, deepFreeze } from '@utils/common';
+import { isDefined, deepFreeze, get, pipe } from '@utils/common';
 
 describe('utils', () => {
   describe('isDefined()', () => {
@@ -71,6 +71,62 @@ describe('utils', () => {
       expect(() => {
         frozen.c.cc.ccc = null;
       }).toThrowError();
+    });
+  });
+
+  describe('get()', () => {
+    const sampleObj: any = {
+      a: 1,
+      b: 'foo',
+      c: {
+        ca: 1,
+        cb: 'foo',
+        cc: {
+          cca: 1,
+          ccb: 'foo',
+          ccc: {},
+        },
+      },
+    };
+    let obj: any = null;
+
+    beforeEach(() => {
+      obj = Object.assign({}, sampleObj);
+    });
+
+    it('input an object and key, return a property value', () => {
+      expect(get(obj, 'a')).toEqual(1);
+      expect(get(obj, 'b')).toEqual('foo');
+      expect(get(obj.c, 'ca')).toEqual(1);
+      expect(get(obj.c.cc, 'ccc')).toEqual({});
+    });
+  });
+
+  describe('pipe()', () => {
+    beforeEach(() => {});
+
+    it('input a function, return a function', () => {
+      expect(typeof pipe((value: number) => value)).toEqual('function');
+    });
+
+    it('input functions, return a function', () => {
+      expect(
+        typeof pipe(
+          (value: number) => value,
+          (value: number) => value
+        )
+      ).toEqual('function');
+    });
+
+    it('called with a parameter, return value that reduced', () => {
+      const pipedA = pipe((a: number) => a + 1);
+      expect(pipedA(1)).toEqual(2);
+
+      const pipedB = pipe(
+        (a: number) => a,
+        (b: number) => b + 99
+      );
+      expect(pipedB(1)).toEqual(100);
     });
   });
 });
