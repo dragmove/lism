@@ -1,6 +1,11 @@
 import useDebounce from '@hooks/useDebounce';
-import { act, fireEvent, render, screen } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  renderHook,
+} from '@testing-library/react';
 import React from 'react';
 
 describe('useDebounce', () => {

@@ -1,6 +1,5 @@
 import useDelayedCallback from '@hooks/useDelayedCallback';
-import { act, render } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { act, render, renderHook } from '@testing-library/react';
 import React from 'react';
 
 describe('useDelayedCallback', () => {

@@ -1,5 +1,7 @@
 // Ref: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
 
+import { IArrayLike, IDictionary } from '@shared/interfaces/common';
+
 const slice = Array.prototype.slice;
 
 const _get = curryr2(get);
@@ -8,7 +10,12 @@ const _length = _get('length');
 
 const _values = curryr2(map)(identity);
 
-// TODO: Add doc
+export const hasOwnProp = Object.prototype.hasOwnProperty;
+
+export function curry2(fn: (a: any, b: any) => any) {
+  return (a: any) => (b: any) => fn.apply(null, [a, b]);
+}
+
 export function curryr2(fn: (a: any, b: any) => any) {
   return (b: any) => (a: any) => fn.apply(null, [a, b]);
 }
@@ -29,9 +36,40 @@ export function isDefined(val: unknown): boolean {
   return true;
 }
 
-// TODO: Add doc
 export function isObject(obj: unknown): boolean {
   return typeof obj === 'object' && !!obj;
+}
+
+export function isInteger(val: number): boolean {
+  // Ref: https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger
+  return isFinite(val) && Math.floor(val) === val;
+}
+
+export function isError(val: any, errorType?: unknown): boolean {
+  if (!isDefined(val)) return false;
+
+  const con: unknown = val.constructor;
+  if (!isDefined(errorType)) {
+    return (
+      con === Error ||
+      con === EvalError ||
+      con === RangeError ||
+      con === ReferenceError ||
+      con === SyntaxError ||
+      con === TypeError ||
+      con === URIError
+    );
+  }
+
+  return con === errorType;
+}
+
+export const eq = curry2((lhs: any, rhs: any): boolean => lhs === rhs);
+export const gt = curry2((lhs: number, rhs: number): boolean => lhs < rhs);
+export const lt = curry2((lhs: number, rhs: number): boolean => lhs > rhs);
+
+export function toArray<T>(iterable: IArrayLike<T>): T[] {
+  return slice.call(iterable);
 }
 
 /**
@@ -69,17 +107,14 @@ export function get(obj: any, key: string): undefined | any {
   return obj[key];
 }
 
-// TODO: Add doc
 export function identity(val: any): any {
   return val;
 }
 
-// TODO: Add doc
 export function negate(fn: (any: any) => boolean) {
   return (val: any) => !fn(val);
 }
 
-// TODO: Add doc
 export function rest<T = any>(list: T[], beginIndex = 1): T[] {
   return slice.call(list, beginIndex);
 }
@@ -97,7 +132,6 @@ export function keys(obj: any): string[] {
   return isObject(obj) ? Object.keys(obj) : [];
 }
 
-// TODO: Add doc
 export function values(data: any): any[] {
   return _values(data);
 }
@@ -137,7 +171,6 @@ export function map(list: any[], mapperFn: (item: any) => void): any[] {
   return result;
 }
 
-// TODO: Add doc
 export function filter(
   list: any[],
   predicateFn: (item: any) => boolean
@@ -150,7 +183,6 @@ export function filter(
   return result;
 }
 
-// TODO: Add doc
 export function reject(
   list: any[],
   predicateFn: (item: any) => boolean
@@ -158,7 +190,6 @@ export function reject(
   return filter(list, negate(predicateFn));
 }
 
-// TODO: Add doc
 export function compact(list: any[]): any[] {
   // exclude false values(0, '', false, null, undefined, NaN, ...)
   return filter(list, identity);
@@ -343,3 +374,161 @@ function maxBy(list: any[], iterateeFn: (item: any) => void): any {
     iterateeFn(memo) > iterateeFn(item) ? memo : item
   );
 }
+
+/*
+ * array
+ */
+export function has<T>(arr: T[], val: T): boolean {
+  return arr.includes(val);
+}
+
+/*
+ * string
+ */
+export const getUrlCombinedParams = (
+  url: string,
+  parameters?: IDictionary<string | number>
+): string => {
+  if (!url) return '';
+  if (!parameters) return url;
+
+  let str: string = '';
+  for (let key in parameters) {
+    if (hasOwnProp.call(parameters, key))
+      str += '&' + key + '=' + String(parameters[key]);
+  }
+
+  if (str === '') return url;
+
+  var tmpArr = url.split('#'),
+    hashStr = isDefined(tmpArr[1]) && tmpArr[1].length ? '#' + tmpArr[1] : '';
+
+  url = tmpArr[0];
+  url =
+    (url.indexOf('?') >= 0 ? url + str : url + '?' + str.substr(1)) + hashStr;
+
+  return url;
+};
+
+export function toPrice(val: string): string;
+export function toPrice(val: number): string;
+export function toPrice(val: any): string {
+  if (typeof val === 'string') return val.replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+  return new Intl.NumberFormat().format(val);
+}
+
+export const removeWhitespace = (
+  str = '',
+  removeEscapeSequence = false
+): string => {
+  // Ref: https://msdn.microsoft.com/en-us/library/h21280bw.aspx
+  // escape sequence is string like \n, \r, \t, ...
+  return removeEscapeSequence ? str.replace(/\s/g, '') : str.replace(/ /g, '');
+};
+
+export const escapeHtml = (str: string): string => {
+  // Refer: https://github.com/lodash/lodash/blob/master/escape.js
+
+  const htmlEscapes: IDictionary<string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+  const regexUnescapedHtml = /[&<>"']/g;
+  const regexHasUnescapedHtml = RegExp(regexUnescapedHtml.source);
+
+  return regexHasUnescapedHtml.test(str)
+    ? str.replace(regexUnescapedHtml, (char: string) => htmlEscapes[char])
+    : str;
+};
+
+export const unescapeHtml = (str: string): string => {
+  // Refer: https://github.com/lodash/lodash/blob/master/unescape.js
+  // Note: No other HTML entities are unescaped. To unescape additional HTML entities use a third-party library like [_he_](https://mths.be/he).
+  const htmlUnescapes: IDictionary<string> = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#39;': "'",
+  };
+  const regexEscapedHtml = /&(?:amp|lt|gt|quot|#(0+)?39);/g;
+  const regexHasEscapedHtml = RegExp(regexEscapedHtml.source);
+
+  return regexHasEscapedHtml.test(str)
+    ? str.replace(
+        regexEscapedHtml,
+        (entity: string) => htmlUnescapes[entity] || "'"
+      )
+    : str;
+};
+
+export const getFacebookShareUrl = (encodedUrl: string): string => {
+  // when 'share on facebook' button is clicked, call window.open(share url, window name, window features).
+  // e.g: window.open(getFacebookShareUrl(window.encodeURIComponent('https://www.google.com/')), 'windowName');
+  return `https://www.facebook.com/share.php?u=${encodedUrl}`;
+};
+
+// when 'share on twitter' button is clicked.
+// e.g: https://twitter.com/intent/tweet?text=Hello%20World&url=https%3A%2F%2Fwww.google.com%2F&hashtags=test,share&via=firstborn_nyc&related=code%3Arecommendation_title_1,jetbrains%3Arecommendation_title_2
+export const getTwitterShareUrl = (
+  queryParams: IDictionary<string | number> = {
+    // Pre-populated UTF-8 and URL-encoded Tweet text. The passed text will appear pre-selected for a Twitter user to delete or edit before posting. The length of your passed Tweet text should not exceed 280 characters when combined with any passed hashtags, via, or url parameters. Passed Tweet text which causes the Tweet to exceed 280 characters in length will require additional editing by a Twitter user before he or she can successfully post.
+    // e.g: window.encodeURIComponent('Hello World')
+    text: '',
+
+    // A fully-qualified URL with a HTTP or HTTPS scheme, URL-encoded. The provided URL will be shortened by Twitter’s t.co to the number of characters specified by short_url_length.
+    // e.g: window.encodeURIComponent('https://www.google.com/')
+    url: '',
+
+    // Allow easy discovery of Tweets by topic by including a comma-separated list of hashtag values without the preceding # character.
+    // e.g: 'test,share'
+    hashtags: '',
+
+    // A Twitter username to associate with the Tweet, such as your site’s Twitter account. The provided username will be appended to the end of the Tweet with the text “via @username”. A logged-out Twitter user will be encouraged to sign-in or join Twitter to engage with the via account’s Tweets. The account may be suggested as an account to follow after the user posts a Tweet.
+    // e.g: 'firstborn_nyc'
+    via: '',
+
+    // Suggest additional Twitter usernames related to the Tweet as comma-separated values. Twitter may suggest these accounts to follow after the user posts their Tweet. You may provide a brief description of how the account relates to the Tweet with a URL-encoded comma and text after the username.
+    // e.g: window.encodeURIComponent('code:recommendation_title_1,jetbrains:recommendation_title_2')
+    related: '',
+
+    // The Tweet ID of a parent Tweet in a conversation, such as the initial Tweet from your site or author account.
+    // e.g: 525001166233403393
+    in_reply_to: -1,
+  }
+): string => {
+  // Refer: https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/guides/web-intent
+  return getUrlCombinedParams('https://twitter.com/intent/tweet', queryParams);
+};
+
+export const getLineShareUrl = (url: string): string => {
+  // Refer: https://social-plugins.line.me/en/how_to_install#lineitbutton
+  // e.g: https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fwww.google.com%2F
+  return `https://social-plugins.line.me/lineit/share?url=${url}`;
+};
+
+export const getNaverShareUrl = (
+  queryParams: IDictionary<string> = {
+    url: '', // e.g: window.encodeURIComponent('https://www.google.com/')
+    title: '', // e.g: window.encodeURIComponent('Hello World')
+  }
+): string => {
+  // Refer: https://developers.naver.com/docs/share/navershare/
+  return getUrlCombinedParams(
+    'https://share.naver.com/web/shareView.nhn',
+    queryParams
+  );
+};
+
+// TODO: KakaoTalk share url
+
+/*
+ * object
+ */
+export const hasKey = (
+  obj: IDictionary<string> = {},
+  key: string = ''
+): boolean => hasOwnProp.call(obj, key);

@@ -12,6 +12,7 @@ const config: Config.InitialOptions = {
     '^@components/(.*)': '<rootDir>/src/components/$1',
     '^@hooks/(.*)': '<rootDir>/src/hooks/$1',
     '^@utils/(.*)': '<rootDir>/src/utils/$1',
+    '^@shared/(.*)': '<rootDir>/src/shared/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };
