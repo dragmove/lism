@@ -171,6 +171,73 @@ export function map(list: any[], mapperFn: (item: any) => void): any[] {
   return result;
 }
 
+/**
+ * TODO: Add doc
+ * @function removeItem
+ * @example
+ * removeItem([1, 2, 3], 1) // [1, 3]
+ * removeItem([1, 2, 3], 1, 2) // [1]
+ */
+export function removeItem(
+  list: any[],
+  index: number,
+  count: number = 1
+): any[] {
+  const copy = slice.call(list);
+  copy.splice(index, count);
+  return copy;
+}
+
+export function shift(list: any[]): {
+  first: any;
+  array: any[];
+} {
+  const copy = slice.call(list);
+  const first = copy.shift();
+  return {
+    first,
+    array: copy,
+  };
+}
+
+export function pop(list: any[]): {
+  last: any;
+  array: any[];
+} {
+  const copy = slice.call(list);
+  const last = copy.pop();
+  return {
+    last,
+    array: copy,
+  };
+}
+
+export function first(list: any[]): any {
+  return list[0];
+}
+
+export function dropFirst(list: any[]): any {
+  const copy = slice.call(list);
+  copy.shift();
+  return copy;
+}
+
+export function last(list: any[]): any {
+  return list[list.length - 1];
+}
+
+export function dropLast(list: any[]): any {
+  const copy = slice.call(list);
+  copy.pop();
+  return copy;
+}
+
+export function add(list: any[], item: any): any[] {
+  const copy = slice.call(list);
+  copy.push(item);
+  return copy;
+}
+
 export function filter(
   list: any[],
   predicateFn: (item: any) => boolean
