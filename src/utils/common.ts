@@ -599,3 +599,19 @@ export const hasKey = (
   obj: IDictionary<string> = {},
   key: string = ''
 ): boolean => hasOwnProp.call(obj, key);
+
+export const setProp = (object: IDictionary, key: string, value: any): any => {
+  const copy = Object.assign({}, object);
+  copy[key] = value;
+  return copy;
+};
+
+export const deleteProp = (
+  object: IDictionary,
+  key: string,
+  value: any
+): any => {
+  const copy = Object.assign({}, object);
+  delete copy[key];
+  return copy;
+};
