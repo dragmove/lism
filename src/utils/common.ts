@@ -12,12 +12,12 @@ const _values = curryr2(map)(identity);
 
 export const hasOwnProp = Object.prototype.hasOwnProperty;
 
-export function curry2(fn: (a: any, b: any) => any) {
-  return (a: any) => (b: any) => fn.apply(null, [a, b]);
+export function curry2<A, B, R>(fn: (a: A, b: B) => R): (a: A) => (b: B) => R {
+  return (a: A) => (b: B) => fn.apply(null, [a, b]);
 }
 
-export function curryr2(fn: (a: any, b: any) => any) {
-  return (b: any) => (a: any) => fn.apply(null, [a, b]);
+export function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A) => R {
+  return (b: B) => (a: A) => fn.apply(null, [a, b]);
 }
 
 /**
@@ -96,18 +96,18 @@ export function deepFreeze<T>(obj: T): T {
  * Get a property value from object
  *
  * @function get
- * @param {*} obj
+ * @param {IDictionary} obj
  * @param {string} key
- * @returns {undefined | *}
+ * @returns {* | undefined}
  * @example
  * get(find(users, (user) => user.id == 99), 'name')
  */
-export function get(obj: any, key: string): undefined | any {
+export function get<T>(obj: IDictionary<T>, key: string): any | undefined {
   if (!isDefined(obj)) return undefined;
   return obj[key];
 }
 
-export function identity(val: any): any {
+export function identity<T = any>(val: T): T {
   return val;
 }
 
