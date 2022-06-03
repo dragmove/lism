@@ -6,7 +6,7 @@ const slice = Array.prototype.slice;
 
 const _get = curryr2(get);
 
-const _length = _get('length');
+// const _length = _get('length');
 
 const _values = curryr2(map)(identity);
 
