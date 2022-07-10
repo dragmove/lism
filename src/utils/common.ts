@@ -32,7 +32,7 @@ export function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A) => R {
  * isDefined(0) // true
  */
 export function isDefined(val: unknown): boolean {
-  if (val == null || typeof val === 'undefined') return false;
+  if (val === null || typeof val === 'undefined') return false;
   return true;
 }
 
