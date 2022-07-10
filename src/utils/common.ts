@@ -45,6 +45,10 @@ export function isInteger(val: number): boolean {
   return isFinite(val) && Math.floor(val) === val;
 }
 
+export function isString(val: unknown): val is string {
+  return typeof val === 'string';
+}
+
 export function isError(val: any, errorType?: unknown): boolean {
   if (!isDefined(val)) return false;
 
