@@ -13,6 +13,16 @@ describe('getFileExtension()', () => {
     }).toThrowError(Error);
   });
 
+  it('when fileName is invalid, throw Error', () => {
+    expect(() => {
+      getFileExtension('image.png.');
+    }).toThrowError(Error);
+
+    expect(() => {
+      getFileExtension('image.png . ');
+    }).toThrowError(Error);
+  });
+
   it('input "image.png", return "png"', () => {
     expect(getFileExtension('image.png')).toEqual('png');
   });

@@ -13,5 +13,10 @@ export const getFileExtension = (fileName: string): string | never => {
     throw new Error('[getFileExtension] fileName parameter has no extension');
   }
 
-  return fileName.substring(lastDotIndex + 1);
+  const extension = (fileName.slice(lastDotIndex + 1) || '').trim();
+  if (!extension) {
+    throw new Error('[getFileExtension] invalid fileName parameter');
+  }
+
+  return extension;
 };
