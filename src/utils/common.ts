@@ -147,10 +147,7 @@ export function values(data: any): any[] {
  * each([0, 1, 2], (item) => console.log(item))
  * each({name: 'foo', age: 30, height: 170}, (item) => console.log(item))
  */
-export function each(
-  list: any[] | any,
-  iterateeFn: (item: any) => void
-): any[] {
+export function each(list: any[] | any, iterateeFn: (item: any) => void): any[] {
   // deal with array and object type (polymorphism)
   const _keys: any[] = keys(list);
   for (let i = 0, max: number = _keys.length; i < max; i++) {
@@ -182,11 +179,7 @@ export function map(list: any[], mapperFn: (item: any) => void): any[] {
  * removeItem([1, 2, 3], 1) // [1, 3]
  * removeItem([1, 2, 3], 1, 2) // [1]
  */
-export function removeItem(
-  list: any[],
-  index: number,
-  count: number = 1
-): any[] {
+export function removeItem(list: any[], index: number, count: number = 1): any[] {
   const copy = slice.call(list);
   copy.splice(index, count);
   return copy;
@@ -242,10 +235,7 @@ export function add(list: any[], item: any): any[] {
   return copy;
 }
 
-export function filter(
-  list: any[],
-  predicateFn: (item: any) => boolean
-): any[] {
+export function filter(list: any[], predicateFn: (item: any) => boolean): any[] {
   const result: any[] = [];
   each(list, (item) => {
     if (predicateFn(item)) result.push(item);
@@ -254,10 +244,7 @@ export function filter(
   return result;
 }
 
-export function reject(
-  list: any[],
-  predicateFn: (item: any) => boolean
-): any[] {
+export function reject(list: any[], predicateFn: (item: any) => boolean): any[] {
   return filter(list, negate(predicateFn));
 }
 
@@ -272,11 +259,7 @@ export function compact(list: any[]): any[] {
  * @example
  * reduce([1, 2, 3], add, 0)
  */
-export function reduce(
-  list: any[],
-  iterateeFn: (memo: any, item: any) => any,
-  memo?: any
-): any {
+export function reduce(list: any[], iterateeFn: (memo: any, item: any) => any, memo?: any): any {
   let result = memo;
   if (arguments.length === 2) {
     result = list[0];
@@ -306,10 +289,7 @@ export function pluck(data: any, key: string) {
  * @example
  * find(users, (user) => user.age > 30)
  */
-export function find(
-  list: any[],
-  predicateFn: (item: any) => boolean
-): any | undefined {
+export function find(list: any[], predicateFn: (item: any) => boolean): any | undefined {
   // deal with array and object type (polymorphism)
   const _keys: any[] = keys(list);
   for (let i = 0, max = keys.length; i < max; i++) {
@@ -325,10 +305,7 @@ export function find(
  * @function findIndex
  * @example
  */
-export function findIndex(
-  list: any[],
-  predicateFn: (item: any) => boolean
-): number {
+export function findIndex(list: any[], predicateFn: (item: any) => boolean): number {
   // deal with array and object type (polymorphism)
   const _keys: any[] = keys(list);
   for (let i = 0, max = keys.length; i < max; i++) {
@@ -344,10 +321,7 @@ export function findIndex(
  * @function some
  * @example
  */
-export function some(
-  list: any[],
-  predicateFn: (item: any) => boolean
-): boolean {
+export function some(list: any[], predicateFn: (item: any) => boolean): boolean {
   return findIndex(list, predicateFn || identity) !== -1;
 }
 
@@ -356,10 +330,7 @@ export function some(
  * @function every
  * @example
  */
-export function every(
-  list: any[],
-  predicateFn: (item: any) => boolean
-): boolean {
+export function every(list: any[], predicateFn: (item: any) => boolean): boolean {
   return findIndex(list, negate(predicateFn || identity)) === -1;
 }
 
@@ -435,15 +406,11 @@ function max(list: any[]): any {
 }
 
 function minBy(list: any[], iterateeFn: (item: any) => void): any {
-  return reduce(list, (memo, item) =>
-    iterateeFn(memo) < iterateeFn(item) ? memo : item
-  );
+  return reduce(list, (memo, item) => (iterateeFn(memo) < iterateeFn(item) ? memo : item));
 }
 
 function maxBy(list: any[], iterateeFn: (item: any) => void): any {
-  return reduce(list, (memo, item) =>
-    iterateeFn(memo) > iterateeFn(item) ? memo : item
-  );
+  return reduce(list, (memo, item) => (iterateeFn(memo) > iterateeFn(item) ? memo : item));
 }
 
 /*
@@ -456,17 +423,13 @@ export function has<T>(arr: T[], val: T): boolean {
 /*
  * string
  */
-export const getUrlCombinedParams = (
-  url: string,
-  parameters?: IDictionary<string | number>
-): string => {
+export const getUrlCombinedParams = (url: string, parameters?: IDictionary<string | number>): string => {
   if (!url) return '';
   if (!parameters) return url;
 
   let str: string = '';
   for (let key in parameters) {
-    if (hasOwnProp.call(parameters, key))
-      str += '&' + key + '=' + String(parameters[key]);
+    if (hasOwnProp.call(parameters, key)) str += '&' + key + '=' + String(parameters[key]);
   }
 
   if (str === '') return url;
@@ -475,8 +438,7 @@ export const getUrlCombinedParams = (
     hashStr = isDefined(tmpArr[1]) && tmpArr[1].length ? '#' + tmpArr[1] : '';
 
   url = tmpArr[0];
-  url =
-    (url.indexOf('?') >= 0 ? url + str : url + '?' + str.substr(1)) + hashStr;
+  url = (url.indexOf('?') >= 0 ? url + str : url + '?' + str.substr(1)) + hashStr;
 
   return url;
 };
@@ -488,10 +450,7 @@ export function toPrice(val: any): string {
   return new Intl.NumberFormat().format(val);
 }
 
-export const removeWhitespace = (
-  str = '',
-  removeEscapeSequence = false
-): string => {
+export const removeWhitespace = (str = '', removeEscapeSequence = false): string => {
   // Ref: https://msdn.microsoft.com/en-us/library/h21280bw.aspx
   // escape sequence is string like \n, \r, \t, ...
   return removeEscapeSequence ? str.replace(/\s/g, '') : str.replace(/ /g, '');
@@ -510,9 +469,7 @@ export const escapeHtml = (str: string): string => {
   const regexUnescapedHtml = /[&<>"']/g;
   const regexHasUnescapedHtml = RegExp(regexUnescapedHtml.source);
 
-  return regexHasUnescapedHtml.test(str)
-    ? str.replace(regexUnescapedHtml, (char: string) => htmlEscapes[char])
-    : str;
+  return regexHasUnescapedHtml.test(str) ? str.replace(regexUnescapedHtml, (char: string) => htmlEscapes[char]) : str;
 };
 
 export const unescapeHtml = (str: string): string => {
@@ -529,10 +486,7 @@ export const unescapeHtml = (str: string): string => {
   const regexHasEscapedHtml = RegExp(regexEscapedHtml.source);
 
   return regexHasEscapedHtml.test(str)
-    ? str.replace(
-        regexEscapedHtml,
-        (entity: string) => htmlUnescapes[entity] || "'"
-      )
+    ? str.replace(regexEscapedHtml, (entity: string) => htmlUnescapes[entity] || "'")
     : str;
 };
 
@@ -588,10 +542,7 @@ export const getNaverShareUrl = (
   }
 ): string => {
   // Refer: https://developers.naver.com/docs/share/navershare/
-  return getUrlCombinedParams(
-    'https://share.naver.com/web/shareView.nhn',
-    queryParams
-  );
+  return getUrlCombinedParams('https://share.naver.com/web/shareView.nhn', queryParams);
 };
 
 // TODO: KakaoTalk share url
@@ -599,10 +550,7 @@ export const getNaverShareUrl = (
 /*
  * object
  */
-export const hasKey = (
-  obj: IDictionary<string> = {},
-  key: string = ''
-): boolean => hasOwnProp.call(obj, key);
+export const hasKey = (obj: IDictionary<string> = {}, key: string = ''): boolean => hasOwnProp.call(obj, key);
 
 export const setProp = (object: IDictionary, key: string, value: any): any => {
   const copy = Object.assign({}, object);
@@ -610,12 +558,15 @@ export const setProp = (object: IDictionary, key: string, value: any): any => {
   return copy;
 };
 
-export const deleteProp = (
-  object: IDictionary,
-  key: string,
-  value: any
-): any => {
+export const deleteProp = (object: IDictionary, key: string, value: any): any => {
   const copy = Object.assign({}, object);
   delete copy[key];
   return copy;
+};
+
+/*
+ * error
+ */
+export const exhaustiveCheck = (params: never, message: string = '[exhaustiveCheck] Error') => {
+  throw new Error(message);
 };
