@@ -35,4 +35,8 @@ export interface Point3d extends Point {
 
 export type MakeAllPropsBoolean<T> = {
   [P in keyof T]?: boolean;
-}
+};
+
+export type Subset<T> = {
+  [K in keyof T]?: T[K];
+};
