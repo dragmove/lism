@@ -32,3 +32,7 @@ export interface Point {
 export interface Point3d extends Point {
   z: number;
 }
+
+export type MakeAllPropsBoolean<T> = {
+  [P in keyof T]?: boolean;
+}
