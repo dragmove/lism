@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 
 /**
- * Custom hook return whether a component is mounted or not
+ * A custom React hook that determines whether the component is mounted.
  *
- * @function useMounted
- * @returns boolean
+ * @returns {boolean} - Returns `true` if the component is mounted, `false` otherwise.
  * @example
+ * ```tsx
  * const isMounted = useMounted();
+ * ```
  */
 const useMounted = (): boolean => {
   const [mounted, setMounted] = useState<boolean>(false);
