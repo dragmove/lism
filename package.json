@@ -10,7 +10,8 @@
     "format": "prettier --write ./src",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "docs": "npx typedoc"
   },
   "repository": {
     "type": "git",
