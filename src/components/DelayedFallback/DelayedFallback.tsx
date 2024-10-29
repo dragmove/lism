@@ -4,17 +4,18 @@ import useDelayedCallback from '../../hooks/useDelayedCallback';
 interface PropTypes {
   children: ReactNode;
   isReadyToRender: boolean;
-  fallback?: any;
+  fallback?: ReactNode;
   fallbackDelay?: number;
 }
 
-// TODO: Add comments for documentation
-const DelayedFallback = ({
-  children,
-  isReadyToRender = false,
-  fallback,
-  fallbackDelay = 200,
-}: PropTypes): any => {
+/**
+ * A React component that conditionally renders its children or a fallback component
+ * based on the `isReadyToRender` prop. It uses a delay before rendering the fallback.
+ *
+ * @param {PropTypes} props - The component props.
+ * @returns {ReactNode} - The rendered children or fallback content.
+ */
+const DelayedFallback = ({ children, isReadyToRender = false, fallback, fallbackDelay = 200 }: PropTypes): any => {
   const delayedCallback = useDelayedCallback(fallbackDelay);
   return isReadyToRender ? <>{children}</> : delayedCallback(() => fallback);
 };

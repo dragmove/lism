@@ -27,10 +27,7 @@ class MinHeap {
   protected heapifyUp(): void {
     let index: number = this.nodes.length - 1;
 
-    while (
-      this.hasParent(index) &&
-      this.parent(index).key > this.nodes[index].key
-    ) {
+    while (this.hasParent(index) && this.parent(index).key > this.nodes[index].key) {
       this.swap(this.getParentIndex(index), index);
       index = this.getParentIndex(index);
     }
@@ -41,8 +38,7 @@ class MinHeap {
 
     while (this.hasLeftChild(index)) {
       const smallerChildIndex: number =
-        this.hasRightChild(index) &&
-        this.rightChild(index).key < this.leftChild(index).key
+        this.hasRightChild(index) && this.rightChild(index).key < this.leftChild(index).key
           ? this.getRightChildIndex(index)
           : this.getLeftChildIndex(index);
 
@@ -58,28 +54,18 @@ class MinHeap {
 
   protected getLeftChildIndex = (index: number): number => 2 * index + 1;
   protected getRightChildIndex = (index: number): number => 2 * index + 2;
-  protected getParentIndex = (index: number): number =>
-    Math.floor((index - 1) / 2);
+  protected getParentIndex = (index: number): number => Math.floor((index - 1) / 2);
 
-  protected hasLeftChild = (index: number): boolean =>
-    this.getLeftChildIndex(index) < this.nodes.length;
-  protected hasRightChild = (index: number): boolean =>
-    this.getRightChildIndex(index) < this.nodes.length;
-  protected hasParent = (index: number): boolean =>
-    this.getParentIndex(index) >= 0;
+  protected hasLeftChild = (index: number): boolean => this.getLeftChildIndex(index) < this.nodes.length;
+  protected hasRightChild = (index: number): boolean => this.getRightChildIndex(index) < this.nodes.length;
+  protected hasParent = (index: number): boolean => this.getParentIndex(index) >= 0;
 
-  protected leftChild = (index: number): Node =>
-    this.nodes[this.getLeftChildIndex(index)];
-  protected rightChild = (index: number): Node =>
-    this.nodes[this.getRightChildIndex(index)];
-  protected parent = (index: number): Node =>
-    this.nodes[this.getParentIndex(index)];
+  protected leftChild = (index: number): Node => this.nodes[this.getLeftChildIndex(index)];
+  protected rightChild = (index: number): Node => this.nodes[this.getRightChildIndex(index)];
+  protected parent = (index: number): Node => this.nodes[this.getParentIndex(index)];
 
   private swap(indexA: number, indexB: number): void {
-    [this.nodes[indexA], this.nodes[indexB]] = [
-      this.nodes[indexB],
-      this.nodes[indexA],
-    ];
+    [this.nodes[indexA], this.nodes[indexB]] = [this.nodes[indexB], this.nodes[indexA]];
   }
 }
 

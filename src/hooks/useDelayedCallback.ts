@@ -10,9 +10,7 @@ import { useEffect, useState } from 'react';
  * const delayedCallback = useDelayedCallback(1000);
  * delayedCallback(() => console.log('foo'));
  */
-const useDelayedCallback = (
-  delay: number
-): ((callback: () => void) => void | false) => {
+const useDelayedCallback = (delay: number): ((callback: () => void) => void | false) => {
   const [isDelayed, setIsDelayed] = useState<boolean>(true);
 
   useEffect(() => {
@@ -20,8 +18,7 @@ const useDelayedCallback = (
     return () => clearTimeout(timeoutId);
   }, [delay]);
 
-  const delayedCallback = (callback: () => void): void | false =>
-    !isDelayed && callback.apply(null);
+  const delayedCallback = (callback: () => void): void | false => !isDelayed && callback.apply(null);
   return delayedCallback;
 };
 

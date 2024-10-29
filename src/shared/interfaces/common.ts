@@ -40,3 +40,8 @@ export type MakeAllPropsBoolean<T> = {
 export type Subset<T> = {
   [K in keyof T]?: T[K];
 };
+
+export interface Node {
+  key: number;
+  data: any;
+}

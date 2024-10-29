@@ -179,7 +179,7 @@ export function map(list: any[], mapperFn: (item: any) => void): any[] {
  * removeItem([1, 2, 3], 1) // [1, 3]
  * removeItem([1, 2, 3], 1, 2) // [1]
  */
-export function removeItem(list: any[], index: number, count: number = 1): any[] {
+export function removeItem(list: any[], index: number, count = 1): any[] {
   const copy = slice.call(list);
   copy.splice(index, count);
   return copy;
@@ -397,19 +397,19 @@ function go(seed: any, ...rest: (() => void)[]) {
 min([1, 2, 99, 4, -1]);
 minBy([1, 2, 99, 4, -1], Math.abs);
 */
-function min(list: any[]): any {
+export function min(list: any[]): any {
   return reduce(list, (memo, item) => (memo < item ? memo : item));
 }
 
-function max(list: any[]): any {
+export function max(list: any[]): any {
   return reduce(list, (memo, item) => (memo > item ? memo : item));
 }
 
-function minBy(list: any[], iterateeFn: (item: any) => void): any {
+export function minBy(list: any[], iterateeFn: (item: any) => void): any {
   return reduce(list, (memo, item) => (iterateeFn(memo) < iterateeFn(item) ? memo : item));
 }
 
-function maxBy(list: any[], iterateeFn: (item: any) => void): any {
+export function maxBy(list: any[], iterateeFn: (item: any) => void): any {
   return reduce(list, (memo, item) => (iterateeFn(memo) > iterateeFn(item) ? memo : item));
 }
 
@@ -427,14 +427,14 @@ export const getUrlCombinedParams = (url: string, parameters?: IDictionary<strin
   if (!url) return '';
   if (!parameters) return url;
 
-  let str: string = '';
-  for (let key in parameters) {
+  let str = '';
+  for (const key in parameters) {
     if (hasOwnProp.call(parameters, key)) str += '&' + key + '=' + String(parameters[key]);
   }
 
   if (str === '') return url;
 
-  var tmpArr = url.split('#'),
+  const tmpArr = url.split('#'),
     hashStr = isDefined(tmpArr[1]) && tmpArr[1].length ? '#' + tmpArr[1] : '';
 
   url = tmpArr[0];
@@ -550,7 +550,7 @@ export const getNaverShareUrl = (
 /*
  * object
  */
-export const hasKey = (obj: IDictionary<string> = {}, key: string = ''): boolean => hasOwnProp.call(obj, key);
+export const hasKey = (obj: IDictionary<string> = {}, key = ''): boolean => hasOwnProp.call(obj, key);
 
 export const setProp = (object: IDictionary, key: string, value: any): any => {
   const copy = Object.assign({}, object);
@@ -558,7 +558,7 @@ export const setProp = (object: IDictionary, key: string, value: any): any => {
   return copy;
 };
 
-export const deleteProp = (object: IDictionary, key: string, value: any): any => {
+export const deleteProp = (object: IDictionary, key: string): any => {
   const copy = Object.assign({}, object);
   delete copy[key];
   return copy;
@@ -567,6 +567,6 @@ export const deleteProp = (object: IDictionary, key: string, value: any): any =>
 /*
  * error
  */
-export const exhaustiveCheck = (params: never, message: string = '[exhaustiveCheck] Error') => {
+export const exhaustiveCheck = (params: never, message = '[exhaustiveCheck] Error') => {
   throw new Error(message);
 };

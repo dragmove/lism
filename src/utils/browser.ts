@@ -1,13 +1,9 @@
 import { IStorage } from '@shared/interfaces/common';
-import { eq, isObject } from './common';
+import { isObject } from './common';
 
 export const alert = (message: string | object): void => window.alert(message);
 
-export const confirm = (
-  message: string = '',
-  okCallback: Function,
-  cancelCallback?: Function
-) => {
+export const confirm = (message: string = '', okCallback: Function, cancelCallback?: Function) => {
   const confirmFn = (): void => {
     const result: boolean = window.confirm(message);
     if (result) {
@@ -26,19 +22,23 @@ export const isSupportTouch: boolean = 'ontouchstart' in window;
 
 export function isPortrait(): boolean {
   // Refer: https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList
-  if ('matchMedia' in window)
-    return window.matchMedia('(orientation: portrait)').matches;
-  if ('orientation' in window)
-    return eq(window.orientation)(0) || eq(window.orientation)(180);
+  if ('matchMedia' in window) return window.matchMedia('(orientation: portrait)').matches;
+
+  const orientation = (window as Window & { orientation?: number }).orientation;
+  if (typeof orientation === 'number') {
+    return orientation === 0 || orientation === 100;
+  }
   return false;
 }
 
 export function isLandscape(): boolean {
   // Refer: https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList
-  if ('matchMedia' in window)
-    return window.matchMedia('(orientation: landscape)').matches;
-  if ('orientation' in window)
-    return eq(window.orientation)(-90) || eq(window.orientation)(90);
+  if ('matchMedia' in window) return window.matchMedia('(orientation: landscape)').matches;
+
+  const orientation = (window as Window & { orientation?: number }).orientation;
+  if (typeof orientation === 'number') {
+    return orientation === -90 || orientation === 90;
+  }
   return false;
 }
 
