@@ -21,19 +21,19 @@ export function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A) => R {
 }
 
 /**
- * Check if a value is defined
+ * Checks if a value is defined (not null or undefined).
  *
  * @function isDefined
- * @param {?} val
- * @returns {boolean}
+ * @param {unknown} value - The value to check.
+ * @returns {boolean} - Returns `true` if the value is defined, otherwise `false`.
  * @example
- * isDefined(undefined) // false
- * isDefined(null) // false
- * isDefined(0) // true
+ * isDefined(undefined); // false
+ * isDefined(null); // false
+ * isDefined(0); // true
+ * isDefined('Hello'); // true
  */
-export function isDefined(val: unknown): boolean {
-  if (val === null || typeof val === 'undefined') return false;
-  return true;
+export function isDefined(value: unknown): boolean {
+  return value !== null && typeof value !== 'undefined';
 }
 
 export function isObject(obj: unknown): boolean {
