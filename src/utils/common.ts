@@ -77,13 +77,17 @@ export function toArray<T>(iterable: IArrayLike<T>): T[] {
 }
 
 /**
- * Make an object immutable
+ * Performs a deep freeze on an object, making all its properties immutable.
+ * This function recursively calls itself on all nested objects,
+ * ultimately ensuring that all properties are read-only.
  *
- * @function deepFreeze
- * @param {*} obj
- * @returns {*}
+ * @param {Record<string, unknown>} obj - The object to be frozen
+ * @returns {T} The frozen object
+ *
  * @example
- * deepFreeze({ a: 1, b: 'foo', c: { ca: 1, cb: 'foo' })
+ * const obj = { a: 1, b: { c: 2 } };
+ * const frozenObj = deepFreeze(obj);
+ * frozenObj.b.c = 3; // TypeError: Cannot assign to read only property 'c'
  */
 export function deepFreeze<T>(obj: T): T {
   // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
