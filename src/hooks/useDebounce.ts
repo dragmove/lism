@@ -15,7 +15,9 @@ const useDebounce = (delay: number): ((callback: () => void) => void) => {
   const [timeoutId, setTimeoutId] = useState<number | undefined>(undefined);
 
   useEffect(() => {
-    return () => clearTimeout(timeoutId);
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [timeoutId, delay]);
 
   const debounce = (callback: () => void): void => {
