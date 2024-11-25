@@ -1,21 +1,10 @@
 import { TOUCH_MOUSE_EVENT } from '@shared/constants/event';
-import {
-  IAddEventListenerOption,
-  IRemoveEventListenerOption,
-} from '@shared/interfaces/common';
-import {
-  filter,
-  first,
-  fromEvent,
-  map,
-  switchMap,
-  tap,
-  timeInterval,
-} from 'rxjs';
+import { IAddEventListenerOption, IRemoveEventListenerOption } from '@shared/interfaces/common';
+import { filter, first, fromEvent, map, switchMap, tap, timeInterval } from 'rxjs';
 import { isSupportTouch } from './browser';
 import { eq, isInteger } from './common';
 
-// Ref: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+// @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 export function addListener(
   ele: HTMLElement | null = null,
   type = '',
@@ -29,7 +18,7 @@ export function addListener(
   if (ele) ele.addEventListener(type, listener, options);
 }
 
-// Ref: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener
+// @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener
 export function removeListener(
   ele: HTMLElement | null = null,
   type = '',
@@ -105,14 +94,9 @@ export const getNClick$ = ({
   limitTime?: number;
 }) => {
   if (!isInteger(clickNum) || clickNum <= 0)
-    throw new TypeError(
-      '[getNClick$] clickNum parameter type must be Integer. (bigger than 0)'
-    );
+    throw new TypeError('[getNClick$] clickNum parameter type must be Integer. (bigger than 0)');
 
-  if (limitTime <= 0)
-    throw new TypeError(
-      '[getNClick$] limitTime parameter must be bigger than 0.'
-    );
+  if (limitTime <= 0) throw new TypeError('[getNClick$] limitTime parameter must be bigger than 0.');
 
   if (eq(clickNum)(1)) return getClick$(ele);
 
@@ -137,10 +121,7 @@ export const getNClick$ = ({
 
 // mousedown, mouseup / touchstart, touchend event
 // TODO: Specify any types
-export const getStart$ = (
-  ele: HTMLElement | Document,
-  operators: any[] = []
-) => {
+export const getStart$ = (ele: HTMLElement | Document, operators: any[] = []) => {
   let observable = fromEvent(ele, TOUCH_MOUSE_EVENT.start);
   operators.map((operator) => (observable = observable.pipe(operator)));
 
@@ -158,27 +139,19 @@ export const getEnd$ = (ele: HTMLElement | Document, operators: any[] = []) => {
 // TODO: Specify any types
 export const getTapClick$ = (start$: any, end$: any) => {
   return start$.pipe(
-    switchMap(
-      (startPos: { event: Event; x: number; y: number; timeStamp: number }) =>
-        end$.pipe(
-          map(
-            (endPos: {
-              event: Event;
-              x: number;
-              y: number;
-              timeStamp: number;
-            }) => {
-              return {
-                startEvent: startPos.event,
-                endEvent: endPos.event,
-                x: endPos.x - startPos.x,
-                y: endPos.y - startPos.y,
-                elapsedTime: endPos.timeStamp - startPos.timeStamp,
-              };
-            }
-          ),
-          first()
-        )
+    switchMap((startPos: { event: Event; x: number; y: number; timeStamp: number }) =>
+      end$.pipe(
+        map((endPos: { event: Event; x: number; y: number; timeStamp: number }) => {
+          return {
+            startEvent: startPos.event,
+            endEvent: endPos.event,
+            x: endPos.x - startPos.x,
+            y: endPos.y - startPos.y,
+            elapsedTime: endPos.timeStamp - startPos.timeStamp,
+          };
+        }),
+        first()
+      )
     )
   );
 };

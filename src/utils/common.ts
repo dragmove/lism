@@ -1,4 +1,4 @@
-// Ref: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
+// @see https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
 
 import { IArrayLike, IDictionary } from '@shared/interfaces/common';
 
@@ -41,7 +41,7 @@ export function isObject(obj: unknown): boolean {
 }
 
 export function isInteger(val: number): boolean {
-  // Ref: https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger
+  // @see https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger
   return isFinite(val) && Math.floor(val) === val;
 }
 
@@ -86,7 +86,7 @@ export function toArray<T>(iterable: IArrayLike<T>): T[] {
  * deepFreeze({ a: 1, b: 'foo', c: { ca: 1, cb: 'foo' })
  */
 export function deepFreeze<T>(obj: T): T {
-  // Ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
+  // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
   const propNames: string[] = Object.getOwnPropertyNames(obj);
   for (const name of propNames) {
     const value: unknown = (obj as any)[name];
@@ -451,7 +451,7 @@ export function toPrice(val: any): string {
 }
 
 export const removeWhitespace = (str = '', removeEscapeSequence = false): string => {
-  // Ref: https://msdn.microsoft.com/en-us/library/h21280bw.aspx
+  // @see https://msdn.microsoft.com/en-us/library/h21280bw.aspx
   // escape sequence is string like \n, \r, \t, ...
   return removeEscapeSequence ? str.replace(/\s/g, '') : str.replace(/ /g, '');
 };

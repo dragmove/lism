@@ -1,3 +1,3 @@
-// Ref: https://github.com/testing-library/jest-dom#usage
+// @see https://github.com/testing-library/jest-dom#usage
 
 import '@testing-library/jest-dom';
