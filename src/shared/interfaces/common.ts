@@ -1,3 +1,5 @@
+export type Maybe<T> = T | null | undefined;
+
 export interface IArrayLike<T> {
   length: number;
   [index: number]: T;
