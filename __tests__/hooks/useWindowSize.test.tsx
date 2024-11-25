@@ -1,3 +1,5 @@
+import '@testing-library/jest-dom';
+
 import useWindowSize from '@hooks/useWindowSize';
 import { renderHook } from '@testing-library/react';
 

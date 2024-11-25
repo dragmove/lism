@@ -14,3 +14,17 @@
 npm install lism --save
 yarn add lism
 ```
+
+## Run Tests
+
+```sh
+npm run test
+```
+
+## Build documents
+
+Build typdoc documents to `docs` path
+
+```sh
+npm run docs
+```
