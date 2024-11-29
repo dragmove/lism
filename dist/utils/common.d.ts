@@ -1,39 +1,54 @@
-export declare function curryr2(fn: (a: any, b: any) => any): (b: any) => (a: any) => any;
+import { IArrayLike, IDictionary } from '@shared/interfaces/common';
+export declare const hasOwnProp: (v: PropertyKey) => boolean;
+export declare function curry2<A, B, R>(fn: (a: A, b: B) => R): (a: A) => (b: B) => R;
+export declare function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A) => R;
 /**
- * Check if a value is defined
+ * Checks if a value is defined (not null or undefined).
  *
  * @function isDefined
- * @param {?} val
- * @returns {boolean}
+ * @param {unknown} value - The value to check.
+ * @returns {boolean} - Returns `true` if the value is defined, otherwise `false`.
  * @example
- * isDefined(undefined) // false
- * isDefined(null) // false
- * isDefined(0) // true
+ * isDefined(undefined); // false
+ * isDefined(null); // false
+ * isDefined(0); // true
+ * isDefined('Hello'); // true
  */
-export declare function isDefined(val: unknown): boolean;
+export declare function isDefined(value: unknown): boolean;
 export declare function isObject(obj: unknown): boolean;
+export declare function isInteger(val: number): boolean;
+export declare function isString(val: unknown): val is string;
+export declare function isError(val: any, errorType?: unknown): boolean;
+export declare const eq: (a: any) => (b: any) => boolean;
+export declare const gt: (a: number) => (b: number) => boolean;
+export declare const lt: (a: number) => (b: number) => boolean;
+export declare function toArray<T>(iterable: IArrayLike<T>): T[];
 /**
- * Make an object immutable
+ * Performs a deep freeze on an object, making all its properties immutable.
+ * This function recursively calls itself on all nested objects,
+ * ultimately ensuring that all properties are read-only.
  *
- * @function deepFreeze
- * @param {*} obj
- * @returns {*}
+ * @param {Record<string, unknown>} obj - The object to be frozen
+ * @returns {T} The frozen object
+ *
  * @example
- * deepFreeze({ a: 1, b: 'foo', c: { ca: 1, cb: 'foo' })
+ * const obj = { a: 1, b: { c: 2 } };
+ * const frozenObj = deepFreeze(obj);
+ * frozenObj.b.c = 3; // TypeError: Cannot assign to read only property 'c'
  */
 export declare function deepFreeze<T>(obj: T): T;
 /**
  * Get a property value from object
  *
  * @function get
- * @param {*} obj
+ * @param {IDictionary} obj
  * @param {string} key
- * @returns {undefined | *}
+ * @returns {* | undefined}
  * @example
  * get(find(users, (user) => user.id == 99), 'name')
  */
-export declare function get(obj: any, key: string): undefined | any;
-export declare function identity(val: any): any;
+export declare function get<T>(obj: IDictionary<T>, key: string): any | undefined;
+export declare function identity<T = any>(val: T): T;
 export declare function negate(fn: (any: any) => boolean): (val: any) => boolean;
 export declare function rest<T = any>(list: T[], beginIndex?: number): T[];
 /**
@@ -62,6 +77,27 @@ export declare function each(list: any[] | any, iterateeFn: (item: any) => void)
  * map(filter(users, (user) => user.age > 40), get('name'))
  */
 export declare function map(list: any[], mapperFn: (item: any) => void): any[];
+/**
+ * TODO: Add doc
+ * @function removeItem
+ * @example
+ * removeItem([1, 2, 3], 1) // [1, 3]
+ * removeItem([1, 2, 3], 1, 2) // [1]
+ */
+export declare function removeItem(list: any[], index: number, count?: number): any[];
+export declare function shift(list: any[]): {
+    first: any;
+    array: any[];
+};
+export declare function pop(list: any[]): {
+    last: any;
+    array: any[];
+};
+export declare function first(list: any[]): any;
+export declare function dropFirst(list: any[]): any;
+export declare function last(list: any[]): any;
+export declare function dropLast(list: any[]): any;
+export declare function add(list: any[], item: any): any[];
 export declare function filter(list: any[], predicateFn: (item: any) => boolean): any[];
 export declare function reject(list: any[], predicateFn: (item: any) => boolean): any[];
 export declare function compact(list: any[]): any[];
@@ -112,3 +148,22 @@ export declare function every(list: any[], predicateFn: (item: any) => boolean):
  * piped(1) // 100
  */
 export declare function pipe(...rest: ((any?: any) => void)[]): (seed: any) => any;
+export declare function min(list: any[]): any;
+export declare function max(list: any[]): any;
+export declare function minBy(list: any[], iterateeFn: (item: any) => void): any;
+export declare function maxBy(list: any[], iterateeFn: (item: any) => void): any;
+export declare function has<T>(arr: T[], val: T): boolean;
+export declare const getUrlCombinedParams: (url: string, parameters?: IDictionary<string | number>) => string;
+export declare function toPrice(val: string): string;
+export declare function toPrice(val: number): string;
+export declare const removeWhitespace: (str?: string, removeEscapeSequence?: boolean) => string;
+export declare const escapeHtml: (str: string) => string;
+export declare const unescapeHtml: (str: string) => string;
+export declare const getFacebookShareUrl: (encodedUrl: string) => string;
+export declare const getTwitterShareUrl: (queryParams?: IDictionary<string | number>) => string;
+export declare const getLineShareUrl: (url: string) => string;
+export declare const getNaverShareUrl: (queryParams?: IDictionary<string>) => string;
+export declare const hasKey: (obj?: IDictionary<string>, key?: string) => boolean;
+export declare const setProp: (object: IDictionary, key: string, value: any) => any;
+export declare const deleteProp: (object: IDictionary, key: string) => any;
+export declare const exhaustiveCheck: (params: never, message?: string) => never;

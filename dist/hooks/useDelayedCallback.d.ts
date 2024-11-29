@@ -1,12 +1,12 @@
 /**
- * Custom hook return a delayed callback
+ * Custom hook that returns a delayed callback function.
  *
  * @function useDelayedCallback
- * @param {number} delay - millisecond
- * @returns {(callback: () => void) => void | false}
+ * @param {number} delay - The delay in milliseconds before the callback can be executed.
+ * @returns {(callback: () => void) => void | false} - A function that takes a callback to be executed after the delay.
  * @example
  * const delayedCallback = useDelayedCallback(1000);
- * delayedCallback(() => console.log('foo'));
+ * delayedCallback(() => console.log('foo')); // This will log 'foo' after 1 second.
  */
-declare const useDelayedCallback: (delay: number) => (callback: () => void) => void | false;
+declare const useDelayedCallback: (delay: number) => ((callback: () => void) => void | false);
 export default useDelayedCallback;
