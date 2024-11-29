@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import useDelayedCallback from '../../hooks/useDelayedCallback';
 
+// FIXME: add example comment
 /**
  * The DelayedFallback component conditionally renders its children or a fallback component
  * based on the `isReadyToRender` prop. It waits for a specified delay (fallbackDelay)

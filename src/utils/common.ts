@@ -23,14 +23,16 @@ export function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A) => R {
 /**
  * Checks if a value is defined (not null or undefined).
  *
- * @function isDefined
  * @param {unknown} value - The value to check.
  * @returns {boolean} - Returns `true` if the value is defined, otherwise `false`.
+ *
  * @example
+ * ```typescript
  * isDefined(undefined); // false
  * isDefined(null); // false
  * isDefined(0); // true
  * isDefined('Hello'); // true
+ * ```
  */
 export function isDefined(value: unknown): boolean {
   return value !== null && typeof value !== 'undefined';
@@ -85,9 +87,11 @@ export function toArray<T>(iterable: IArrayLike<T>): T[] {
  * @returns {T} The frozen object
  *
  * @example
+ * ```typescript
  * const obj = { a: 1, b: { c: 2 } };
  * const frozenObj = deepFreeze(obj);
  * frozenObj.b.c = 3; // TypeError: Cannot assign to read only property 'c'
+ * ```
  */
 export function deepFreeze<T>(obj: T): T {
   // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
