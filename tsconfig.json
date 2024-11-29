@@ -1,5 +1,9 @@
 {
   "extends": "@tsconfig/recommended/tsconfig.json",
+  "ts-node": {
+    "transpileOnly": true,
+    "require": ["typescript-transform-paths/register"]
+  },
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
@@ -34,7 +38,19 @@
       "@hooks/*": ["src/hooks/*"],
       "@utils/*": ["src/utils/*"],
       "@shared/*": ["src/shared/*"]
-    } /* Specify a set of entries that re-map imports to additional lookup locations. */,
+    },
+
+    // Note: To transform paths for both the output .js and .d.ts files, you need both of the below entries
+    // @see https://www.npmjs.com/package/typescript-transform-paths
+    "plugins": [
+      // Transform paths in output .js files
+      { "transform": "typescript-transform-paths" },
+
+      // Transform paths in output .d.ts files (Include this line if you output declarations files)
+      { "transform": "typescript-transform-paths", "afterDeclarations": true }
+    ],
+
+    /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     "typeRoots": [
       "./node_modules/@types",
