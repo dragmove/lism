@@ -9,7 +9,7 @@ describe('useDebounce', () => {
     jest.clearAllTimers();
   });
 
-  it('should return function', () => {
+  test('should return function', () => {
     const { result } = renderHook(() => useDebounce(1000));
 
     act(() => {
@@ -18,7 +18,7 @@ describe('useDebounce', () => {
     });
   });
 
-  it('should call callback after delay', () => {
+  test('should call callback after delay', () => {
     jest.useFakeTimers();
 
     let data = null;
@@ -54,7 +54,7 @@ describe('useDebounce', () => {
     expect(data).toEqual('foo');
   });
 
-  it('should postpone calling callback after delay', () => {
+  test('should postpone calling callback after delay', () => {
     jest.useFakeTimers();
 
     let data = null;

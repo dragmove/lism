@@ -1,19 +1,19 @@
 import { getImageSrcSet } from '@utils/image';
 
 describe('getImageSrcSet()', () => {
-  it('when imageUrl is empty string, throw Error', () => {
+  test('when imageUrl is empty string, throw Error', () => {
     expect(() => {
       getImageSrcSet('');
     }).toThrowError(Error);
   });
 
-  it('when imageUrl has no extension, throw Error', () => {
+  test('when imageUrl has no extension, throw Error', () => {
     expect(() => {
       getImageSrcSet('image');
     }).toThrowError(Error);
   });
 
-  it('when imageUrl is invalid, throw Error', () => {
+  test('when imageUrl is invalid, throw Error', () => {
     expect(() => {
       getImageSrcSet('image.png.');
     }).toThrowError(Error);
@@ -47,8 +47,7 @@ describe('getImageSrcSet()', () => {
   }`, () => {
     expect(getImageSrcSet('/path/image.png')).toEqual({
       src: '/path/image.png',
-      srcSet:
-        '/path/image.png 1x, /path/image@2x.png 2x, /path/image@3x.png 3x',
+      srcSet: '/path/image.png 1x, /path/image@2x.png 2x, /path/image@3x.png 3x',
     });
   });
 
