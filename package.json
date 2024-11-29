@@ -5,13 +5,14 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "version": "npx changeset && npx changeset version",
     "build": "rimraf ./dist && webpack --config webpack.config.js && npm run docs",
+    "docs": "npx typedoc",
     "lint": "eslint --ext .ts ./src",
     "format": "prettier --write ./src",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "test:coverage": "jest --coverage",
-    "docs": "npx typedoc"
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.25.9",
+    "@changesets/cli": "^2.27.10",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",

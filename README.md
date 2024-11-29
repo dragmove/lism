@@ -28,3 +28,9 @@ Build typdoc documents to `docs` path
 ```sh
 npm run docs
 ```
+
+### Update Release Version
+
+```sh
+npm run version
+```
