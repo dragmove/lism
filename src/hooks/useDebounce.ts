@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 /**
  * Custom hook returns a debounced function.
  *
- * @function useDebounce
  * @param {number} delay - The time (in milliseconds) to wait before executing the callback.
  * @returns {(callback: () => void) => void}
  * @example

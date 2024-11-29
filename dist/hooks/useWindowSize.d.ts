@@ -3,10 +3,10 @@ export interface WindowSize {
     height: number | undefined;
 }
 /**
- * Custom hook return window size
- *
+ * Returns the current window size(width and height)
+ * @summary Get the current window size
  * @function useWindowSize
- * @returns WindowSize
+ * @returns {WindowSize} - The current window size
  * @example
  * const windowSize = useWindowSize();
  * console.log('windowSize :', windowSize);

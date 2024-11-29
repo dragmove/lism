@@ -1,5 +1,3 @@
-import { gt, lt } from './common';
-
 /**
  * Checks if a given number is positive.
  *
@@ -13,8 +11,7 @@ import { gt, lt } from './common';
  * isPositive(0); // returns false
  * ```
  */
-export const isPositive = (value: number): boolean => gt(0)(value);
-
+export declare const isPositive: (value: number) => boolean;
 /**
  * Checks if a given number is negative.
  *
@@ -28,8 +25,7 @@ export const isPositive = (value: number): boolean => gt(0)(value);
  * isNegative(0); // returns false
  * ```
  */
-export const isNegative = (value: number): boolean => lt(0)(value);
-
+export declare const isNegative: (value: number) => boolean;
 /**
  * Clamps a number between a minimum and maximum value.
  *
@@ -46,4 +42,4 @@ export const isNegative = (value: number): boolean => lt(0)(value);
  * clamp(-1, -5, 0) // returns -1
  * ```
  */
-export const clamp = (value: number, min: number, max: number): number => Math.max(Math.min(value, max), min);
+export declare const clamp: (value: number, min: number, max: number) => number;

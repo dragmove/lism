@@ -1,3 +1,4 @@
+/*
 import { TOUCH_MOUSE_EVENT } from '@shared/constants/event';
 import { IAddEventListenerOption, IRemoveEventListenerOption } from '@shared/interfaces/common';
 import { filter, first, fromEvent, map, switchMap, tap, timeInterval } from 'rxjs';
@@ -155,3 +156,4 @@ export const getTapClick$ = (start$: any, end$: any) => {
     )
   );
 };
+*/

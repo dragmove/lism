@@ -1,4 +1,4 @@
-import { Node } from './interfaces/common';
+import { Node } from '@shared/interfaces/common';
 declare class MinHeap {
     private nodes;
     constructor();

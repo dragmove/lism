@@ -40,7 +40,7 @@ describe('utils', () => {
       obj = Object.assign({}, sampleObj);
     });
 
-    it('input an object, return a frozen object', () => {
+    test('input an object, return a frozen object', () => {
       const frozen = deepFreeze(obj);
 
       expect(deepFreeze(frozen)).toEqual(obj);
@@ -79,7 +79,7 @@ describe('utils', () => {
       obj = Object.assign({}, sampleObj);
     });
 
-    it('input an object and key, return a property value', () => {
+    test('input an object and key, return a property value', () => {
       expect(get(obj, 'a')).toEqual(1);
       expect(get(obj, 'b')).toEqual('foo');
       expect(get(obj.c, 'ca')).toEqual(1);
@@ -90,11 +90,11 @@ describe('utils', () => {
   describe('pipe()', () => {
     beforeEach(() => {});
 
-    it('input a function, return a function', () => {
+    test('input a function, return a function', () => {
       expect(typeof pipe((value: number) => value)).toEqual('function');
     });
 
-    it('input functions, return a function', () => {
+    test('input functions, return a function', () => {
       expect(
         typeof pipe(
           (value: number) => value,
@@ -103,7 +103,7 @@ describe('utils', () => {
       ).toEqual('function');
     });
 
-    it('called with a parameter, return value that reduced', () => {
+    test('called with a parameter, return value that reduced', () => {
       const pipedA = pipe((a: number) => a + 1);
       expect(pipedA(1)).toEqual(2);
 

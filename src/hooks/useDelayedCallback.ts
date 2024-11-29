@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 /**
  * Custom hook that returns a delayed callback function.
  *
- * @function useDelayedCallback
  * @param {number} delay - The delay in milliseconds before the callback can be executed.
  * @returns {(callback: () => void) => void | false} - A function that takes a callback to be executed after the delay.
  * @example
