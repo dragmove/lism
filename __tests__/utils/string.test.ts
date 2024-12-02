@@ -34,4 +34,8 @@ describe('getFileExtension()', () => {
   test('input "image.js.jpg", return "jpg"', () => {
     expect(getFileExtension('image.js.jpg')).toEqual('jpg');
   });
+
+  test('input " image.jpg ", return "jpg"', () => {
+    expect(getFileExtension(' image.jpg ')).toEqual('jpg');
+  });
 });
