@@ -4,7 +4,7 @@ import { gt, lt } from './common';
  * Checks if a given number is positive.
  *
  * @param {number} value - The number to check.
- * @returns {boolean} - Returns true if the number is greater than zero, otherwise false.
+ * @returns {boolean} - Returns `true` if the number is greater than zero, otherwise `false`.
  *
  * @example
  * ```typescript
@@ -19,7 +19,7 @@ export const isPositive = (value: number): boolean => gt(0)(value);
  * Checks if a given number is negative.
  *
  * @param {number} value - The number to check.
- * @returns {boolean} - Returns true if the number is less than zero, otherwise false.
+ * @returns {boolean} - Returns `true` if the number is less than zero, otherwise `false`.
  *
  * @example
  * ```typescript
