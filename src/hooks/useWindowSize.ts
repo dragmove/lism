@@ -18,7 +18,7 @@ export interface WindowSize {
  *
  * @remarks
  * The width and height are updated on window resize events.
- * The initial values are `undefined` until the first resize event is fired.
+ * The initial values are set when the component first mounts.
  */
 const useWindowSize = (): WindowSize => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
