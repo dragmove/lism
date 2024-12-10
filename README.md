@@ -6,9 +6,13 @@
 
 ## About
 
-Collection of TypeScript Utilities to help developers streamline their coding workflow.
+Lism is a Collection of TypeScript Utilities to help developers streamline their coding workflow.
 
-## Install
+## Documentation
+
+You can find the Lism documentation [on the website](https://dragmove.github.io/lism).
+
+## Installation
 
 ```sh
 npm install lism --save
