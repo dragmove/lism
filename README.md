@@ -6,7 +6,7 @@
 
 ## About
 
-- A Bundle of Typescript util Library to help developers.
+Collection of TypeScript Utilities to help developers streamline their coding workflow.
 
 ## Install
 
