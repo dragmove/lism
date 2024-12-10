@@ -15,8 +15,9 @@ You can find the Lism documentation [on the website](https://dragmove.github.io/
 ## Installation
 
 ```sh
-npm install lism --save
-yarn add lism
+npm install lism
+# yarn add lism
+# pnpm add lism
 ```
 
 ## Run Tests
