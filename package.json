@@ -1,7 +1,7 @@
 {
   "name": "lism",
   "version": "0.0.14",
-  "description": "A Bundle of Typescript util Library to help developers.",
+  "description": "Collection of TypeScript Utilities to help developers streamline their coding workflow.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
