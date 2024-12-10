@@ -5,7 +5,8 @@ export declare function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A
 /**
  * Checks if a value is defined (not null or undefined).
  *
- * @param {unknown} value - The value to check.
+ * @template T - The type of the value to check.
+ * @param {T | null | undefined} value - The value to check.
  * @returns {boolean} - Returns `true` if the value is defined, otherwise `false`.
  *
  * @example
@@ -16,7 +17,7 @@ export declare function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A
  * isDefined('Hello'); // true
  * ```
  */
-export declare function isDefined(value: unknown): boolean;
+export declare function isDefined<T>(value: T | null | undefined): value is T;
 export declare function isObject(obj: unknown): boolean;
 export declare function isInteger(val: number): boolean;
 export declare function isString(val: unknown): val is string;
