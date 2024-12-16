@@ -11,12 +11,12 @@ describe('Orientation Utilities', () => {
     });
 
     it('should return true when matchMedia returns true', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({ matches: true }));
+      window.matchMedia = jest.fn().mockImplementation(() => ({ matches: true }));
       expect(isPortrait()).toBe(true);
     });
 
     it('should return false when matchMedia returns false', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({ matches: false }));
+      window.matchMedia = jest.fn().mockImplementation(() => ({ matches: false }));
       expect(isPortrait()).toBe(false);
     });
 
@@ -46,12 +46,12 @@ describe('Orientation Utilities', () => {
     });
 
     it('should return true when matchMedia returns true', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({ matches: true }));
+      window.matchMedia = jest.fn().mockImplementation(() => ({ matches: true }));
       expect(isLandscape()).toBe(true);
     });
 
     it('should return false when matchMedia returns false', () => {
-      window.matchMedia = jest.fn().mockImplementation((query) => ({ matches: false }));
+      window.matchMedia = jest.fn().mockImplementation(() => ({ matches: false }));
       expect(isLandscape()).toBe(false);
     });
 
