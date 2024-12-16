@@ -20,25 +20,55 @@ export const isSupportServiceWorker: boolean = 'serviceWorker' in navigator;
 
 export const isSupportTouch: boolean = 'ontouchstart' in window;
 
+/**
+ * Determines whether the current device or browser window is in portrait orientation.
+ *
+ * @returns {boolean} - Returns `true` if the device is in portrait orientation, otherwise returns `false`.
+ *
+ * @example
+ * ```typescript
+ * if (isPortrait()) {
+ *   // Codes for portrait orientation
+ * }
+ * ```
+ */
 export function isPortrait(): boolean {
-  // Refer: https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList
-  if ('matchMedia' in window) return window.matchMedia('(orientation: portrait)').matches;
+  // @see https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList
+  if (typeof window.matchMedia === 'function') {
+    return window.matchMedia('(orientation: portrait)').matches;
+  }
 
   const orientation = (window as Window & { orientation?: number }).orientation;
   if (typeof orientation === 'number') {
-    return orientation === 0 || orientation === 100;
+    return orientation === 0 || orientation === 180;
   }
+
   return false;
 }
 
+/**
+ * Determines whether the current device or browser window is in landscape orientation.
+ *
+ * @returns {boolean} - Returns `true` if the device is in landscape orientation, otherwise returns `false`.
+ *
+ * @example
+ * ```typescript
+ * if (isLandscape()) {
+ *   // Codes for landscape orientation
+ * }
+ * ```
+ */
 export function isLandscape(): boolean {
-  // Refer: https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList
-  if ('matchMedia' in window) return window.matchMedia('(orientation: landscape)').matches;
+  // @see https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList
+  if (typeof window.matchMedia === 'function') {
+    return window.matchMedia('(orientation: landscape)').matches;
+  }
 
   const orientation = (window as Window & { orientation?: number }).orientation;
   if (typeof orientation === 'number') {
     return orientation === -90 || orientation === 90;
   }
+
   return false;
 }
 
