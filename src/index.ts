@@ -3,6 +3,7 @@ import { default as useDelayedCallback } from '@hooks/useDelayedCallback';
 import useInput from '@hooks/useInput';
 import useMounted from '@hooks/useMounted';
 import useWindowSize, { type WindowSize } from '@hooks/useWindowSize';
+import { isLandscape, isPortrait } from '@utils/browser';
 import { deepFreeze, isDefined } from '@utils/common';
 import { clamp, isNegative, isPositive } from '@utils/math';
 import { getFileExtension } from '@utils/string';
@@ -14,7 +15,9 @@ export {
   DelayedFallback,
   getFileExtension,
   isDefined,
+  isLandscape,
   isNegative,
+  isPortrait,
   isPositive,
   useDebounce,
   useDelayedCallback,
