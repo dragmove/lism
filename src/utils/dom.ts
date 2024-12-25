@@ -1,31 +1,36 @@
 import { isDefined, toArray } from './common';
 
+/**
+ * Checks if the given element is a valid HTML element.
+ *
+ * @param ele - The element to check.
+ * @returns Returns `true` if the element is a valid HTML element, otherwise `false`.
+ *
+ * @example
+ * ```typescript
+ * const div = document.createElement('div');
+ * console.log(isElement(div)); // true
+ *
+ * const textNode = document.createTextNode('Hello');
+ * console.log(isElement(textNode)); // false
+ * ```
+ */
 export const isElement = (ele: HTMLElement): boolean => {
-  return (
-    isDefined(ele) &&
-    typeof ele === 'object' &&
-    ele.nodeType === 1 &&
-    ele instanceof Node
-  );
+  return isDefined(ele) && typeof ele === 'object' && ele.nodeType === 1 && ele instanceof Node;
 };
 
-export const el = (selectors: string): HTMLElement | null =>
-  document.querySelector(selectors);
+export const el = (selectors: string): HTMLElement | null => document.querySelector(selectors);
 
 export function els(selectors: string): NodeListOf<HTMLElement> {
   return document.querySelectorAll(selectors);
 }
 
 export function getClassList(ele: HTMLElement): string[] {
-  return ele.classList
-    ? toArray<string>(ele.classList)
-    : ele.className.split(' ');
+  return ele.classList ? toArray<string>(ele.classList) : ele.className.split(' ');
 }
 
 export function hasClass(ele: HTMLElement, className: string): boolean {
-  return ele.classList
-    ? ele.classList.contains(className)
-    : ele.className.split(' ').indexOf(className) >= 0;
+  return ele.classList ? ele.classList.contains(className) : ele.className.split(' ').indexOf(className) >= 0;
 }
 
 export function addClass(ele: HTMLElement, className: string): void {
@@ -33,8 +38,7 @@ export function addClass(ele: HTMLElement, className: string): void {
   if (ele.classList) {
     ele.classList.add(className);
   } else {
-    if (!hasClass(ele, className))
-      ele.className = `${ele.className} ${className}`.replace(/\s{2,}/g, ' ');
+    if (!hasClass(ele, className)) ele.className = `${ele.className} ${className}`.replace(/\s{2,}/g, ' ');
   }
 }
 
@@ -80,16 +84,8 @@ export function getCancelAnimationFrame(): (requestId: number) => void | any {
 export function getPrefixedTransform(): string {
   if (!isDefined(document)) return '';
 
-  const headStyle: CSSStyleDeclaration = (
-    document.head || document.getElementsByTagName('head')[0]
-  ).style;
-  const transforms: string[] = [
-    'transform',
-    'webkitTransform',
-    'msTransform',
-    'mozTransform',
-    'oTransform',
-  ];
+  const headStyle: CSSStyleDeclaration = (document.head || document.getElementsByTagName('head')[0]).style;
+  const transforms: string[] = ['transform', 'webkitTransform', 'msTransform', 'mozTransform', 'oTransform'];
   for (let i = 0, max = transforms.length; i < max; i++) {
     if (transforms[i] in headStyle) return transforms[i];
   }
