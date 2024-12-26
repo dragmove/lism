@@ -6,6 +6,7 @@ import useWindowSize, { type WindowSize } from '@hooks/useWindowSize';
 import { isLandscape, isPortrait } from '@utils/browser';
 import { deepFreeze, isDefined } from '@utils/common';
 import { isElement } from '@utils/dom';
+import { getGlobal, type GlobalEnv, type GlobalThis } from '@utils/env';
 import { clamp, isNegative, isPositive } from '@utils/math';
 import { getFileExtension } from '@utils/string';
 import { DelayedFallback } from './components';
@@ -15,6 +16,9 @@ export {
   deepFreeze,
   DelayedFallback,
   getFileExtension,
+  getGlobal,
+  GlobalEnv,
+  GlobalThis,
   isDefined,
   isElement,
   isLandscape,
