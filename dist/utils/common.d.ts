@@ -1,4 +1,4 @@
-import { IArrayLike, IDictionary } from '@shared/interfaces/common';
+import { ArrayLike, Dictionary } from '@shared/interfaces/common';
 export declare const hasOwnProp: (v: PropertyKey) => boolean;
 export declare function curry2<A, B, R>(fn: (a: A, b: B) => R): (a: A) => (b: B) => R;
 export declare function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A) => R;
@@ -25,7 +25,7 @@ export declare function isError(val: any, errorType?: unknown): boolean;
 export declare const eq: (a: any) => (b: any) => boolean;
 export declare const gt: (a: number) => (b: number) => boolean;
 export declare const lt: (a: number) => (b: number) => boolean;
-export declare function toArray<T>(iterable: IArrayLike<T>): T[];
+export declare function toArray<T>(iterable: ArrayLike<T>): T[];
 /**
  * Performs a deep freeze on an object, making all its properties immutable.
  * This function recursively calls itself on all nested objects,
@@ -46,13 +46,13 @@ export declare function deepFreeze<T>(obj: T): T;
  * Get a property value from object
  *
  * @function get
- * @param {IDictionary} obj
+ * @param {Dictionary} obj
  * @param {string} key
  * @returns {* | undefined}
  * @example
  * get(find(users, (user) => user.id == 99), 'name')
  */
-export declare function get<T>(obj: IDictionary<T>, key: string): any | undefined;
+export declare function get<T>(obj: Dictionary<T>, key: string): any | undefined;
 export declare function identity<T = any>(val: T): T;
 export declare function negate(fn: (any: any) => boolean): (val: any) => boolean;
 export declare function rest<T = any>(list: T[], beginIndex?: number): T[];
@@ -158,17 +158,17 @@ export declare function max(list: any[]): any;
 export declare function minBy(list: any[], iterateeFn: (item: any) => void): any;
 export declare function maxBy(list: any[], iterateeFn: (item: any) => void): any;
 export declare function has<T>(arr: T[], val: T): boolean;
-export declare const getUrlCombinedParams: (url: string, parameters?: IDictionary<string | number>) => string;
+export declare const getUrlCombinedParams: (url: string, parameters?: Dictionary<string | number>) => string;
 export declare function toPrice(val: string): string;
 export declare function toPrice(val: number): string;
 export declare const removeWhitespace: (str?: string, removeEscapeSequence?: boolean) => string;
 export declare const escapeHtml: (str: string) => string;
 export declare const unescapeHtml: (str: string) => string;
 export declare const getFacebookShareUrl: (encodedUrl: string) => string;
-export declare const getTwitterShareUrl: (queryParams?: IDictionary<string | number>) => string;
+export declare const getTwitterShareUrl: (queryParams?: Dictionary<string | number>) => string;
 export declare const getLineShareUrl: (url: string) => string;
-export declare const getNaverShareUrl: (queryParams?: IDictionary<string>) => string;
-export declare const hasKey: (obj?: IDictionary<string>, key?: string) => boolean;
-export declare const setProp: (object: IDictionary, key: string, value: any) => any;
-export declare const deleteProp: (object: IDictionary, key: string) => any;
+export declare const getNaverShareUrl: (queryParams?: Dictionary<string>) => string;
+export declare const hasKey: (obj?: Dictionary<string>, key?: string) => boolean;
+export declare const setProp: (object: Dictionary, key: string, value: any) => any;
+export declare const deleteProp: (object: Dictionary, key: string) => any;
 export declare const exhaustiveCheck: (params: never, message?: string) => never;
