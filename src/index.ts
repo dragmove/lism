@@ -3,6 +3,7 @@ import { default as useDelayedCallback } from '@hooks/useDelayedCallback';
 import useInput from '@hooks/useInput';
 import useMounted from '@hooks/useMounted';
 import useWindowSize, { type WindowSize } from '@hooks/useWindowSize';
+import type { ArrayLike, Dictionary, Maybe, Node, Point, Point3d } from '@shared/interfaces/common';
 import { isLandscape, isPortrait } from '@utils/browser';
 import { deepFreeze, isDefined } from '@utils/common';
 import { isElement } from '@utils/dom';
@@ -12,9 +13,11 @@ import { getFileExtension } from '@utils/string';
 import { DelayedFallback } from './components';
 
 export {
+  ArrayLike,
   clamp,
   deepFreeze,
   DelayedFallback,
+  Dictionary,
   getFileExtension,
   getGlobal,
   GlobalEnv,
@@ -25,6 +28,10 @@ export {
   isNegative,
   isPortrait,
   isPositive,
+  Maybe,
+  Node,
+  Point,
+  Point3d,
   useDebounce,
   useDelayedCallback,
   useInput,

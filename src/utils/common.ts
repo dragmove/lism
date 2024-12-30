@@ -1,6 +1,6 @@
 // @see https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
 
-import { IArrayLike, IDictionary } from '@shared/interfaces/common';
+import { ArrayLike, Dictionary } from '@shared/interfaces/common';
 
 const slice = Array.prototype.slice;
 
@@ -75,7 +75,7 @@ export const eq = curry2((lhs: any, rhs: any): boolean => lhs === rhs);
 export const gt = curry2((lhs: number, rhs: number): boolean => lhs < rhs);
 export const lt = curry2((lhs: number, rhs: number): boolean => lhs > rhs);
 
-export function toArray<T>(iterable: IArrayLike<T>): T[] {
+export function toArray<T>(iterable: ArrayLike<T>): T[] {
   return slice.call(iterable);
 }
 
@@ -109,13 +109,13 @@ export function deepFreeze<T>(obj: T): T {
  * Get a property value from object
  *
  * @function get
- * @param {IDictionary} obj
+ * @param {Dictionary} obj
  * @param {string} key
  * @returns {* | undefined}
  * @example
  * get(find(users, (user) => user.id == 99), 'name')
  */
-export function get<T>(obj: IDictionary<T>, key: string): any | undefined {
+export function get<T>(obj: Dictionary<T>, key: string): any | undefined {
   if (!isDefined(obj)) return undefined;
   return obj[key];
 }
@@ -432,7 +432,7 @@ export function has<T>(arr: T[], val: T): boolean {
 /*
  * string
  */
-export const getUrlCombinedParams = (url: string, parameters?: IDictionary<string | number>): string => {
+export const getUrlCombinedParams = (url: string, parameters?: Dictionary<string | number>): string => {
   if (!url) return '';
   if (!parameters) return url;
 
@@ -468,7 +468,7 @@ export const removeWhitespace = (str = '', removeEscapeSequence = false): string
 export const escapeHtml = (str: string): string => {
   // Refer: https://github.com/lodash/lodash/blob/master/escape.js
 
-  const htmlEscapes: IDictionary<string> = {
+  const htmlEscapes: Dictionary<string> = {
     '&': '&amp;',
     '<': '&lt;',
     '>': '&gt;',
@@ -484,7 +484,7 @@ export const escapeHtml = (str: string): string => {
 export const unescapeHtml = (str: string): string => {
   // Refer: https://github.com/lodash/lodash/blob/master/unescape.js
   // Note: No other HTML entities are unescaped. To unescape additional HTML entities use a third-party library like [_he_](https://mths.be/he).
-  const htmlUnescapes: IDictionary<string> = {
+  const htmlUnescapes: Dictionary<string> = {
     '&amp;': '&',
     '&lt;': '<',
     '&gt;': '>',
@@ -508,7 +508,7 @@ export const getFacebookShareUrl = (encodedUrl: string): string => {
 // when 'share on twitter' button is clicked.
 // e.g: https://twitter.com/intent/tweet?text=Hello%20World&url=https%3A%2F%2Fwww.google.com%2F&hashtags=test,share&via=firstborn_nyc&related=code%3Arecommendation_title_1,jetbrains%3Arecommendation_title_2
 export const getTwitterShareUrl = (
-  queryParams: IDictionary<string | number> = {
+  queryParams: Dictionary<string | number> = {
     // Pre-populated UTF-8 and URL-encoded Tweet text. The passed text will appear pre-selected for a Twitter user to delete or edit before posting. The length of your passed Tweet text should not exceed 280 characters when combined with any passed hashtags, via, or url parameters. Passed Tweet text which causes the Tweet to exceed 280 characters in length will require additional editing by a Twitter user before he or she can successfully post.
     // e.g: window.encodeURIComponent('Hello World')
     text: '',
@@ -545,7 +545,7 @@ export const getLineShareUrl = (url: string): string => {
 };
 
 export const getNaverShareUrl = (
-  queryParams: IDictionary<string> = {
+  queryParams: Dictionary<string> = {
     url: '', // e.g: window.encodeURIComponent('https://www.google.com/')
     title: '', // e.g: window.encodeURIComponent('Hello World')
   }
@@ -559,15 +559,15 @@ export const getNaverShareUrl = (
 /*
  * object
  */
-export const hasKey = (obj: IDictionary<string> = {}, key = ''): boolean => hasOwnProp.call(obj, key);
+export const hasKey = (obj: Dictionary<string> = {}, key = ''): boolean => hasOwnProp.call(obj, key);
 
-export const setProp = (object: IDictionary, key: string, value: any): any => {
+export const setProp = (object: Dictionary, key: string, value: any): any => {
   const copy = Object.assign({}, object);
   copy[key] = value;
   return copy;
 };
 
-export const deleteProp = (object: IDictionary, key: string): any => {
+export const deleteProp = (object: Dictionary, key: string): any => {
   const copy = Object.assign({}, object);
   delete copy[key];
   return copy;
