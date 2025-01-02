@@ -6,7 +6,7 @@ import useWindowSize, { type WindowSize } from '@hooks/useWindowSize';
 import type { ArrayLike, Dictionary, Maybe, Node, Point, Point3d } from '@shared/interfaces/common';
 import { isLandscape, isPortrait } from '@utils/browser';
 import { deepFreeze, isDefined } from '@utils/common';
-import { isElement } from '@utils/dom';
+import { el, els, isElement } from '@utils/dom';
 import { getGlobal, type GlobalEnv, type GlobalThis } from '@utils/env';
 import { clamp, isNegative, isPositive } from '@utils/math';
 import { getFileExtension } from '@utils/string';
@@ -18,6 +18,8 @@ export {
   deepFreeze,
   DelayedFallback,
   Dictionary,
+  el,
+  els,
   getFileExtension,
   getGlobal,
   GlobalEnv,
