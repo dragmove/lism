@@ -9,7 +9,7 @@ describe('useDelayedCallback', () => {
     jest.clearAllTimers();
   });
 
-  test('should return function', () => {
+  it('should return function', () => {
     const { result } = renderHook(() => useDelayedCallback(1000));
 
     act(() => {
@@ -18,7 +18,7 @@ describe('useDelayedCallback', () => {
     });
   });
 
-  test('should call callback with delay', () => {
+  it('should call callback with delay', () => {
     jest.useFakeTimers();
 
     let data = null;

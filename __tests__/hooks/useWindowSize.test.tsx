@@ -15,7 +15,7 @@ describe('useWindowSize', () => {
     global.innerHeight = 768;
   });
 
-  test('should return initial window size as number', () => {
+  it('should return initial window size as number', () => {
     const { result } = renderHook(() => useWindowSize());
     expect(typeof result.current.width).toBe('number');
     expect(typeof result.current.height).toBe('number');

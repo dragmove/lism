@@ -1,13 +1,13 @@
 import { clamp, isNegative, isPositive } from '@utils/math';
 
 describe('isPositive', () => {
-  test('should return true for positive numbers', () => {
+  it('should return true for positive numbers', () => {
     expect(isPositive(5)).toBe(true);
     expect(isPositive(1)).toBe(true);
     expect(isPositive(100)).toBe(true);
   });
 
-  test('should return false for zero and negative numbers', () => {
+  it('should return false for zero and negative numbers', () => {
     expect(isPositive(0)).toBe(false);
     expect(isPositive(-1)).toBe(false);
     expect(isPositive(-100)).toBe(false);
@@ -15,17 +15,17 @@ describe('isPositive', () => {
 });
 
 describe('isNegative', () => {
-  test('should return true for negative numbers', () => {
+  it('should return true for negative numbers', () => {
     expect(isNegative(-1)).toBe(true);
     expect(isNegative(-100)).toBe(true);
   });
 
-  test('should return false for positive numbers', () => {
+  it('should return false for positive numbers', () => {
     expect(isNegative(1)).toBe(false);
     expect(isNegative(100)).toBe(false);
   });
 
-  test('should return false for zero', () => {
+  it('should return false for zero', () => {
     expect(isNegative(0)).toBe(false);
   });
 });

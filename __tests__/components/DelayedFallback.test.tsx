@@ -9,7 +9,7 @@ describe('DelayedFallback', () => {
     jest.clearAllTimers();
   });
 
-  test('should render children when isReadyToRender prop is true', () => {
+  it('should render children when isReadyToRender prop is true', () => {
     render(
       <DelayedFallback isReadyToRender={true}>
         <div data-testid="children-comp">foo</div>
@@ -19,7 +19,7 @@ describe('DelayedFallback', () => {
     expect(screen.queryByTestId('children-comp')).toBeInTheDocument();
   });
 
-  test('should render a fallback after fallbackDelay when isReadyToRender prop is false', () => {
+  it('should render a fallback after fallbackDelay when isReadyToRender prop is false', () => {
     jest.useFakeTimers();
 
     render(

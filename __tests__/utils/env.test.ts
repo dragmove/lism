@@ -5,7 +5,7 @@ jest.mock('@utils/common', () => ({
   isDefined: jest.fn(),
 }));
 
-describe('getGlobal()', () => {
+describe('getGlobal', () => {
   const mockIsDefined = isDefined as jest.MockedFunction<typeof isDefined>;
 
   beforeEach(() => {

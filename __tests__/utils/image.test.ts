@@ -1,19 +1,19 @@
 import { getImageSrcSet } from '@utils/image';
 
-describe('getImageSrcSet()', () => {
-  test('when imageUrl is empty string, throw Error', () => {
+describe('getImageSrcSet', () => {
+  it('when imageUrl is empty string, throw Error', () => {
     expect(() => {
       getImageSrcSet('');
     }).toThrowError(Error);
   });
 
-  test('when imageUrl has no extension, throw Error', () => {
+  it('when imageUrl has no extension, throw Error', () => {
     expect(() => {
       getImageSrcSet('image');
     }).toThrowError(Error);
   });
 
-  test('when imageUrl is invalid, throw Error', () => {
+  it('when imageUrl is invalid, throw Error', () => {
     expect(() => {
       getImageSrcSet('image.png.');
     }).toThrowError(Error);

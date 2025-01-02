@@ -4,7 +4,7 @@ import useMounted from '@hooks/useMounted';
 import { renderHook } from '@testing-library/react';
 
 describe('useMounted', () => {
-  test('should return true after the component is mounted', () => {
+  it('should return true after the component is mounted', () => {
     const { result, rerender } = renderHook(() => useMounted());
 
     rerender();
