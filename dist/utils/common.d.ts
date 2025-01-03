@@ -7,7 +7,7 @@ export declare function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A
  *
  * @template T - The type of the value to check.
  * @param {T | null | undefined} value - The value to check.
- * @returns {boolean} - Returns `true` if the value is defined, otherwise `false`.
+ * @returns {value is T} - Returns `true` if the value is defined, otherwise `false`.
  *
  * @example
  * ```typescript
@@ -21,7 +21,24 @@ export declare function isDefined<T>(value: T | null | undefined): value is T;
 export declare function isObject(obj: unknown): boolean;
 export declare function isInteger(val: number): boolean;
 export declare function isString(val: unknown): val is string;
-export declare function isError(val: any, errorType?: unknown): boolean;
+/**
+ * Checks if a value is an instance of Error or a specific error type.
+ * @template T - A specific error type that extends the `Error` class.
+ *
+ * @param {unknown} value - The value to check. It can be of any type.
+ * @param {new (...args: any[]) => T} [errorType] - (Optional) A specific error type to validate against.
+ * @returns {value is T} Returns `true` if the value is an instance of Error or the specified error type, otherwise `false`.
+ *
+ * @example
+ * ```typescript
+ * const error = new Error('An error occurred');
+ * console.log(isError(error)); // true
+ *
+ * const typeError = new TypeError('A type error occurred');
+ * console.log(isError(typeError, TypeError)); // true
+ * ```
+ */
+export declare function isError<T extends Error>(value: unknown, errorType?: new (...args: any[]) => T): value is T;
 export declare const eq: (a: any) => (b: any) => boolean;
 export declare const gt: (a: number) => (b: number) => boolean;
 export declare const lt: (a: number) => (b: number) => boolean;
