@@ -25,7 +25,7 @@ export function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A) => R {
  *
  * @template T - The type of the value to check.
  * @param {T | null | undefined} value - The value to check.
- * @returns {boolean} - Returns `true` if the value is defined, otherwise `false`.
+ * @returns {value is T} - Returns `true` if the value is defined, otherwise `false`.
  *
  * @example
  * ```typescript
@@ -52,23 +52,33 @@ export function isString(val: unknown): val is string {
   return typeof val === 'string';
 }
 
-export function isError(val: any, errorType?: unknown): boolean {
-  if (!isDefined(val)) return false;
+/**
+ * Checks if a value is an instance of Error or a specific error type.
+ * @template T - A specific error type that extends the `Error` class.
+ *
+ * @param {unknown} value - The value to check. It can be of any type.
+ * @param {new (...args: any[]) => T} [errorType] - (Optional) A specific error type to validate against.
+ * @returns {value is T} Returns `true` if the value is an instance of Error or the specified error type, otherwise `false`.
+ *
+ * @example
+ * ```typescript
+ * const error = new Error('An error occurred');
+ * console.log(isError(error)); // true
+ *
+ * const typeError = new TypeError('A type error occurred');
+ * console.log(isError(typeError, TypeError)); // true
+ * ```
+ */
+export function isError<T extends Error>(value: unknown, errorType?: new (...args: any[]) => T): value is T {
+  if (typeof value !== 'object' || value === null) return false;
 
-  const con: unknown = val.constructor;
-  if (!isDefined(errorType)) {
-    return (
-      con === Error ||
-      con === EvalError ||
-      con === RangeError ||
-      con === ReferenceError ||
-      con === SyntaxError ||
-      con === TypeError ||
-      con === URIError
-    );
+  if (errorType) {
+    if (typeof errorType !== 'function') return false;
+    return value instanceof errorType;
   }
 
-  return con === errorType;
+  // EvalError, RangeError, ReferenceError, SyntaxError, TypeError, URIError extends Error
+  return value instanceof Error;
 }
 
 export const eq = curry2((lhs: any, rhs: any): boolean => lhs === rhs);
