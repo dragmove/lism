@@ -1,5 +1,5 @@
+import { Node } from '@shared/interfaces/dataStructure';
 import MinHeap from './minHeap';
-import { Node } from '@shared/interfaces/common';
 
 class PriorityQueue extends MinHeap {
   constructor() {

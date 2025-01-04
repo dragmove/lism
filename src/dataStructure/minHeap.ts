@@ -1,4 +1,4 @@
-import { Node } from '@shared/interfaces/common';
+import { Node } from '@shared/interfaces/dataStructure';
 
 class MinHeap {
   private nodes: Node[];
