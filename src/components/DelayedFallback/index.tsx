@@ -1,5 +1,5 @@
 import useDelayedCallback from '@hooks/useDelayedCallback';
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 export interface DelayedFallbackProps {
   children: ReactNode;
