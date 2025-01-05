@@ -28,23 +28,6 @@ export interface Dictionary<T = any> {
   [key: string]: T;
 }
 
-export interface IAddEventListenerOption {
-  capture: boolean;
-  once: boolean;
-  passive: boolean;
-}
-
-export interface IRemoveEventListenerOption {
-  capture: boolean;
-}
-
-export interface IStorage {
-  set: (key: string, obj: object) => void;
-  get: (key: string) => object | string | null;
-  remove: (key: string) => void;
-  clear: () => void;
-}
-
 /**
  * Represents a 2D point with x and y coordinates.
  */
@@ -59,11 +42,3 @@ export interface Point {
 export interface Point3d extends Point {
   z: number;
 }
-
-export type MakeAllPropsBoolean<T> = {
-  [P in keyof T]?: boolean;
-};
-
-export type Subset<T> = {
-  [K in keyof T]?: T[K];
-};

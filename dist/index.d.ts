@@ -11,5 +11,5 @@ import { el, els, isElement } from '@utils/dom';
 import { getGlobal, type GlobalEnv, type GlobalThis } from '@utils/env';
 import { clamp, isNegative, isPositive } from '@utils/math';
 import { getFileExtension } from '@utils/string';
-import { DelayedFallback } from './components';
-export { ArrayLike, clamp, deepFreeze, DelayedFallback, Dictionary, el, els, getFileExtension, getGlobal, GlobalEnv, GlobalThis, isDefined, isElement, isError, isLandscape, isNegative, isPortrait, isPositive, Maybe, Node, Point, Point3d, useDebounce, useDelayedCallback, useInput, useMounted, useWindowSize, WindowSize, };
+import { DelayedFallback, type DelayedFallbackProps } from './components';
+export { DelayedFallbackProps, ArrayLike, clamp, deepFreeze, DelayedFallback, Dictionary, el, els, getFileExtension, getGlobal, GlobalEnv, GlobalThis, isDefined, isElement, isError, isLandscape, isNegative, isPortrait, isPositive, Maybe, Node, Point, Point3d, useDebounce, useDelayedCallback, useInput, useMounted, useWindowSize, WindowSize, };

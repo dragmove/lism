@@ -1,8 +1,3 @@
-import { IStorage } from '@shared/interfaces/common';
-export declare const alert: (message: string | object) => void;
-export declare const confirm: (message: string | undefined, okCallback: Function, cancelCallback?: Function) => () => void;
-export declare const isSupportServiceWorker: boolean;
-export declare const isSupportTouch: boolean;
 /**
  * Determines whether the current device or browser window is in portrait orientation.
  *
@@ -29,7 +24,3 @@ export declare function isPortrait(): boolean;
  * ```
  */
 export declare function isLandscape(): boolean;
-export declare const mqlPortrait: MediaQueryList;
-export declare const mqlLandscape: MediaQueryList;
-export declare const storageSession: IStorage;
-export declare const storageLocal: IStorage;
