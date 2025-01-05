@@ -1,1 +1,1 @@
-export { default as DelayedFallback } from './DelayedFallback';
+export { default as DelayedFallback, type DelayedFallbackProps } from './DelayedFallback';

@@ -1,6 +1,5 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const tsTransformPaths = require('@zerollup/ts-transform-paths');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
@@ -18,12 +17,6 @@ module.exports = {
             loader: 'ts-loader',
             options: {
               configFile: 'tsconfig.json',
-              getCustomTransformers: (program) => {
-                const transformer = tsTransformPaths(program);
-                return {
-                  afterDeclarations: [transformer.afterDeclarations],
-                };
-              },
             },
           },
         ],

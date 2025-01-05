@@ -1,7 +1,8 @@
+import '@testing-library/jest-dom';
+
 import useDebounce from '@hooks/useDebounce';
-import { act, fireEvent, render, screen } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
-import React from 'react';
+import { fireEvent, render, renderHook, screen } from '@testing-library/react';
+import React, { act } from 'react';
 
 describe('useDebounce', () => {
   beforeEach(() => {

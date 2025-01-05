@@ -1,7 +1,8 @@
+import '@testing-library/jest-dom';
+
 import useDelayedCallback from '@hooks/useDelayedCallback';
-import { act, render } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
-import React from 'react';
+import { render, renderHook } from '@testing-library/react';
+import React, { act } from 'react';
 
 describe('useDelayedCallback', () => {
   beforeEach(() => {

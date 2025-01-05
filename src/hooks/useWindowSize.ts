@@ -6,13 +6,19 @@ export interface WindowSize {
 }
 
 /**
- * Custom hook return window size
+ * A custom hook that returns the current window size (width and height).
  *
- * @function useWindowSize
- * @returns WindowSize
+ * @returns {WindowSize} An object containing the current width and height of the window.
+ *
  * @example
- * const windowSize = useWindowSize();
- * console.log('windowSize :', windowSize);
+ * ```tsx
+ * const { width, height } = useWindowSize();
+ * console.log('Current window size:', { width, height });
+ * ```
+ *
+ * @remarks
+ * The width and height are updated on window resize events.
+ * The initial values are set when the component first mounts.
  */
 const useWindowSize = (): WindowSize => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
