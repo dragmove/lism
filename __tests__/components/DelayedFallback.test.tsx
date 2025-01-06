@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import DelayedFallback from '@components/DelayedFallback';
+import DelayedFallback from '@lism-internal/components/DelayedFallback';
 import { render, screen } from '@testing-library/react';
 import React, { act } from 'react';
 

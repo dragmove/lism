@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import useInput from '@hooks/useInput';
+import useInput from '@lism-internal/hooks/useInput';
 import { renderHook } from '@testing-library/react';
 import { act, ChangeEvent } from 'react';
 

@@ -1,4 +1,4 @@
-import { deepFreeze, isDefined, isError } from '@utils/common';
+import { deepFreeze, isDefined, isError } from '@lism-internal/utils/common';
 
 describe('isDefined', () => {
   const testCases = [

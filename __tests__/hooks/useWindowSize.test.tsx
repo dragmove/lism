@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import useWindowSize from '@hooks/useWindowSize';
+import useWindowSize from '@lism-internal/hooks/useWindowSize';
 import { act, renderHook } from '@testing-library/react';
 
 describe('useWindowSize', () => {

@@ -9,10 +9,10 @@ const config: Config.InitialOptions = {
   testRegex: '/__tests__/.*\\.(test|spec)\\.(t|j)sx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   moduleNameMapper: {
-    '^@components/(.*)': '<rootDir>/src/components/$1',
-    '^@hooks/(.*)': '<rootDir>/src/hooks/$1',
-    '^@utils/(.*)': '<rootDir>/src/utils/$1',
-    '^@shared/(.*)': '<rootDir>/src/shared/$1',
+    '^@lism-internal/components/(.*)': '<rootDir>/src/components/$1',
+    '^@lism-internal/hooks/(.*)': '<rootDir>/src/hooks/$1',
+    '^@lism-internal/utils/(.*)': '<rootDir>/src/utils/$1',
+    '^@lism-internal/shared/(.*)': '<rootDir>/src/shared/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };

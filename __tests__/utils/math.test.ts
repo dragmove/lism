@@ -1,4 +1,4 @@
-import { clamp, isNegative, isPositive } from '@utils/math';
+import { clamp, isNegative, isPositive } from '@lism-internal/utils/math';
 
 describe('isPositive', () => {
   it('should return true for positive numbers', () => {
