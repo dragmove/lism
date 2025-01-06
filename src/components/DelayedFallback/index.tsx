@@ -1,4 +1,4 @@
-import useDelayedCallback from '@hooks/useDelayedCallback';
+import useDelayedCallback from '@lism-internal/hooks/useDelayedCallback';
 import React, { ReactNode } from 'react';
 
 export interface DelayedFallbackProps {

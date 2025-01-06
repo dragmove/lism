@@ -1,4 +1,4 @@
-import { isLandscape, isPortrait } from '@utils/browser';
+import { isLandscape, isPortrait } from '@lism-internal/utils/browser';
 
 describe('isPortrait', () => {
   beforeEach(() => {

@@ -1,7 +1,7 @@
-import { isDefined } from '@utils/common';
-import { getGlobal, type GlobalEnv } from '@utils/env';
+import { isDefined } from '@lism-internal/utils/common';
+import { getGlobal, type GlobalEnv } from '@lism-internal/utils/env';
 
-jest.mock('@utils/common', () => ({
+jest.mock('@lism-internal/utils/common', () => ({
   isDefined: jest.fn(),
 }));
 

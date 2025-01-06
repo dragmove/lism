@@ -1,4 +1,4 @@
-import { getFileExtension } from '@utils/string';
+import { getFileExtension } from '@lism-internal/utils/string';
 
 describe('getFileExtension', () => {
   it('when fileName is empty string, throw Error', () => {

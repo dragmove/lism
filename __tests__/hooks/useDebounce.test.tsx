@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import useDebounce from '@hooks/useDebounce';
+import useDebounce from '@lism-internal/hooks/useDebounce';
 import { fireEvent, render, renderHook, screen } from '@testing-library/react';
 import React, { act } from 'react';
 

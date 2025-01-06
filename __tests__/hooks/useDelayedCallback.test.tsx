@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import useDelayedCallback from '@hooks/useDelayedCallback';
+import useDelayedCallback from '@lism-internal/hooks/useDelayedCallback';
 import { render, renderHook } from '@testing-library/react';
 import React, { act } from 'react';
 

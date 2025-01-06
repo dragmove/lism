@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import useMounted from '@hooks/useMounted';
+import useMounted from '@lism-internal/hooks/useMounted';
 import { renderHook } from '@testing-library/react';
 
 describe('useMounted', () => {

@@ -1,4 +1,4 @@
-import { el, els, isElement } from '@utils/dom';
+import { el, els, isElement } from '@lism-internal/utils/dom';
 
 describe('isElement', () => {
   it('should return true for a valid HTML element', () => {
