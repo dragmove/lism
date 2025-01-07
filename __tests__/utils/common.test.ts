@@ -13,7 +13,7 @@ describe('isDefined', () => {
   ];
 
   testCases.forEach(({ input, expected }) => {
-    it(`input ${JSON.stringify(input)}, return ${expected}`, () => {
+    it(`should return ${expected} for ${JSON.stringify(input)}`, () => {
       expect(isDefined(input)).toEqual(expected);
     });
   });
