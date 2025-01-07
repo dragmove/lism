@@ -1,7 +1,7 @@
 import globals from 'globals';
-import pluginJs from '@eslint/js';
+import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import pluginReact from 'eslint-plugin-react';
+import react from 'eslint-plugin-react';
 import prettier from 'eslint-plugin-prettier';
 import eslintConfigPrettier from 'eslint-config-prettier';
 
@@ -19,14 +19,14 @@ export default [
       },
     },
   },
-  pluginJs.configs.recommended,
+  eslint.configs.recommended,
   ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
+  react.configs.flat.recommended,
   eslintConfigPrettier,
   {
     plugins: {
       prettier,
-      react: pluginReact,
+      react,
     },
     rules: {
       'prettier/prettier': ['error', { endOfLine: 'auto' }],
