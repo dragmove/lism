@@ -1,4 +1,4 @@
-import { deepFreeze, isDefined, isError } from '@lism-internal/utils/common';
+import { deepFreeze, isDefined, isError, isNumber } from '@lism-internal/utils/common';
 
 describe('isDefined', () => {
   const testCases = [
@@ -13,9 +13,46 @@ describe('isDefined', () => {
   ];
 
   testCases.forEach(({ input, expected }) => {
-    it(`input ${JSON.stringify(input)}, return ${expected}`, () => {
+    it(`should return ${expected} for ${JSON.stringify(input)}`, () => {
       expect(isDefined(input)).toEqual(expected);
     });
+  });
+});
+
+describe('isNumber', () => {
+  it('should return true for valid numbers', () => {
+    expect(isNumber(0)).toBe(true);
+    expect(isNumber(123)).toBe(true);
+    expect(isNumber(-123)).toBe(true);
+    expect(isNumber(1.23)).toBe(true);
+    expect(isNumber(-1.23)).toBe(true);
+    expect(isNumber(Number.MAX_VALUE)).toBe(true);
+    expect(isNumber(Number.MIN_VALUE)).toBe(true);
+    expect(isNumber(Number.POSITIVE_INFINITY)).toBe(true);
+    expect(isNumber(Number.NEGATIVE_INFINITY)).toBe(true);
+    expect(isNumber(Infinity)).toBe(true);
+    expect(isNumber(-Infinity)).toBe(true);
+  });
+
+  it('should return false for NaN', () => {
+    expect(isNumber(NaN)).toBe(false);
+  });
+
+  it('should return false for non-number types', () => {
+    expect(isNumber('123')).toBe(false);
+    expect(isNumber('')).toBe(false);
+    expect(isNumber(null)).toBe(false);
+    expect(isNumber(undefined)).toBe(false);
+    expect(isNumber({})).toBe(false);
+    expect(isNumber([])).toBe(false);
+    expect(isNumber(() => {})).toBe(false);
+    expect(isNumber(true)).toBe(false);
+    expect(isNumber(false)).toBe(false);
+  });
+
+  it('should return false for objects and arrays', () => {
+    expect(isNumber({ a: 1 })).toBe(false);
+    expect(isNumber([1, 2, 3])).toBe(false);
   });
 });
 

@@ -28,6 +28,24 @@ export function isDefined<T>(value: T | null | undefined): value is T {
 }
 
 /**
+ * Checks if a value is a number and not NaN.
+ *
+ * @param {unknown} value - The value to check.
+ * @returns {value is number} - Returns `true` if the value is a number and not NaN, otherwise `false`.
+ *
+ * @example
+ * ```typescript
+ * isNumber(123); // true
+ * isNumber('123'); // false
+ * isNumber(NaN); // false
+ * ```
+ */
+export function isNumber(value: unknown): value is number {
+  if (!isDefined(value)) return false;
+  return typeof value === 'number' && !isNaN(value);
+}
+
+/**
  * Checks if a value is an instance of Error or a specific error type.
  * @template T - A specific error type that extends the `Error` class.
  *
