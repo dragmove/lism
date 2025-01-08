@@ -1,4 +1,0 @@
-# @see https://typescript-eslint.io/docs/linting/linting#ignoring-unnecessary-files
-
-node_modules
-dist
