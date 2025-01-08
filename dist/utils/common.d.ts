@@ -17,6 +17,20 @@ export declare function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A
  */
 export declare function isDefined<T>(value: T | null | undefined): value is T;
 /**
+ * Checks if a value is a number and not NaN.
+ *
+ * @param {unknown} value - The value to check.
+ * @returns {value is number} - Returns `true` if the value is a number and not NaN, otherwise `false`.
+ *
+ * @example
+ * ```typescript
+ * isNumber(123); // true
+ * isNumber('123'); // false
+ * isNumber(NaN); // false
+ * ```
+ */
+export declare function isNumber(value: unknown): value is number;
+/**
  * Checks if a value is an instance of Error or a specific error type.
  * @template T - A specific error type that extends the `Error` class.
  *
