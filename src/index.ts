@@ -3,7 +3,9 @@ import useDebounce from './hooks/useDebounce';
 import { default as useDelayedCallback } from './hooks/useDelayedCallback';
 import useInput from './hooks/useInput';
 import useMounted from './hooks/useMounted';
-import useWindowSize, { type WindowSize } from './hooks/useWindowSize';
+import useSyncWindowSize from './hooks/useSyncWindowSize';
+import useWindowSize from './hooks/useWindowSize';
+import type { WindowSize } from './shared/interfaces/browser';
 import type { ArrayLike, Dictionary, Maybe, Point, Point3d } from './shared/interfaces/common';
 import type { Node } from './shared/interfaces/dataStructure';
 import { isLandscape, isPortrait } from './utils/browser';
@@ -42,6 +44,7 @@ export {
   useDelayedCallback,
   useInput,
   useMounted,
+  useSyncWindowSize,
   useWindowSize,
   WindowSize,
 };
