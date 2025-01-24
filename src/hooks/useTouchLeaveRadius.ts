@@ -1,6 +1,14 @@
 import { type Point } from '@lism-internal/shared/interfaces/common';
 import { TouchEvent, useCallback, useRef, useState } from 'react';
 
+type UseTouchLeaveRadiusResult = {
+  delta: Point;
+  isLeave: boolean;
+  handleTouchStart: (e: TouchEvent) => void;
+  handleTouchMove: (e: TouchEvent) => void;
+  handleTouchEnd: () => void;
+};
+
 const calculateDistance = (x1: number, y1: number, x2: number, y2: number): number =>
   Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 
@@ -32,7 +40,7 @@ const calculateDistance = (x1: number, y1: number, x2: number, y2: number): numb
  *   );
  * };
  */
-const useTouchLeaveRadius = (radius: number) => {
+const useTouchLeaveRadius = (radius: number): UseTouchLeaveRadiusResult => {
   if (radius <= 0) {
     throw new Error('[useTouchLeaveRadius] The radius must be greater than 0.');
   }
@@ -51,7 +59,7 @@ const useTouchLeaveRadius = (radius: number) => {
     const { clientX, clientY } = touch;
     touchStartRef.current = { x: clientX, y: clientY };
 
-    setDelta({ x: 0, y: 0 });
+    setDelta({ x: 0, y: 0 } as Point);
     setIsLeave(false);
   }, []);
 
@@ -66,7 +74,7 @@ const useTouchLeaveRadius = (radius: number) => {
       const { clientX, clientY } = touch;
       const { x: startX, y: startY } = touchStartRef.current;
 
-      setDelta({ x: Math.abs(startX - clientX), y: Math.abs(startY - clientY) });
+      setDelta({ x: Math.abs(startX - clientX), y: Math.abs(startY - clientY) } as Point);
 
       if (calculateDistance(startX, startY, clientX, clientY) >= radius) {
         setIsLeave(true);

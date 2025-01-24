@@ -1,5 +1,12 @@
 import { type Point } from '@lism-internal/shared/interfaces/common';
 import { TouchEvent } from 'react';
+type UseTouchLeaveRadiusResult = {
+    delta: Point;
+    isLeave: boolean;
+    handleTouchStart: (e: TouchEvent) => void;
+    handleTouchMove: (e: TouchEvent) => void;
+    handleTouchEnd: () => void;
+};
 /**
  * A custom React hook for detecting if a touch event has left a specified radius.
  *
@@ -28,11 +35,5 @@ import { TouchEvent } from 'react';
  *   );
  * };
  */
-declare const useTouchLeaveRadius: (radius: number) => {
-    delta: Point;
-    isLeave: boolean;
-    handleTouchStart: (event: TouchEvent) => void;
-    handleTouchMove: (event: TouchEvent) => void;
-    handleTouchEnd: () => void;
-};
+declare const useTouchLeaveRadius: (radius: number) => UseTouchLeaveRadiusResult;
 export default useTouchLeaveRadius;
