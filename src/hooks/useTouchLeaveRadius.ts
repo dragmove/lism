@@ -1,3 +1,4 @@
+import { type Point } from '@lism-internal/shared/interfaces/common';
 import { TouchEvent, useCallback, useRef, useState } from 'react';
 
 const calculateDistance = (x1: number, y1: number, x2: number, y2: number): number =>
@@ -36,9 +37,9 @@ const useTouchLeaveRadius = (radius: number) => {
     throw new Error('[useTouchLeaveRadius] The radius must be greater than 0.');
   }
 
-  const touchStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const touchStartRef = useRef<Point>({ x: 0, y: 0 });
   const [isLeave, setIsLeave] = useState(false);
-  const [delta, setDelta] = useState({ x: 0, y: 0 });
+  const [delta, setDelta] = useState<Point>({ x: 0, y: 0 });
 
   const handleTouchStart = useCallback((event: TouchEvent) => {
     const touch = event.touches[0];
