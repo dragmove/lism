@@ -3,6 +3,7 @@ import useDebounce from './hooks/useDebounce';
 import { default as useDelayedCallback } from './hooks/useDelayedCallback';
 import useInput from './hooks/useInput';
 import useMounted from './hooks/useMounted';
+import useTouchLeaveRadius from './hooks/useTouchLeaveRadius';
 import useWindowSize, { type WindowSize } from './hooks/useWindowSize';
 import type { ArrayLike, Dictionary, Maybe, Point, Point3d } from './shared/interfaces/common';
 import type { Node } from './shared/interfaces/dataStructure';
@@ -42,6 +43,7 @@ export {
   useDelayedCallback,
   useInput,
   useMounted,
+  useTouchLeaveRadius,
   useWindowSize,
   WindowSize,
 };
