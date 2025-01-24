@@ -5,7 +5,7 @@ interface UseTouchLeaveRadiusResult {
     isLeave: boolean;
     handleTouchStart: (event: TouchEvent) => void;
     handleTouchMove: (event: TouchEvent) => void;
-    handleTouchEnd: (event: TouchEvent) => void;
+    handleTouchEnd: () => void;
 }
 /**
  * A custom React hook for detecting if a touch event has left a specified radius.

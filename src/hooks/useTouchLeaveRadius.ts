@@ -6,7 +6,7 @@ interface UseTouchLeaveRadiusResult {
   isLeave: boolean;
   handleTouchStart: (event: TouchEvent) => void;
   handleTouchMove: (event: TouchEvent) => void;
-  handleTouchEnd: (event: TouchEvent) => void;
+  handleTouchEnd: () => void;
 }
 
 const calculateDistance = (x1: number, y1: number, x2: number, y2: number): number =>
