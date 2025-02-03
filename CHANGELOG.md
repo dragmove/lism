@@ -1,5 +1,11 @@
 # lism
 
+## 0.3.0
+
+### Minor Changes
+
+- Add `useTouchLeaveRadius` hook.
+
 ## 0.2.0
 
 ### Minor Changes
