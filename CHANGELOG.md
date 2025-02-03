@@ -1,5 +1,11 @@
 # lism
 
+## 0.4.0
+
+### Minor Changes
+
+- Add `useSyncWindowSize` hook.
+
 ## 0.3.0
 
 ### Minor Changes
