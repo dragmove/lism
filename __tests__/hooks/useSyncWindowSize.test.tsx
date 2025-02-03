@@ -58,4 +58,15 @@ describe('useSyncWindowSize', () => {
     expect(result.current.width).toBe(1024);
     expect(result.current.height).toBe(768);
   });
+
+  it('should subscribe and unsubscribe to window resize events', () => {
+    const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
+    const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+
+    const { unmount } = renderHook(() => useSyncWindowSize());
+    expect(addEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+
+    unmount();
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+  });
 });
