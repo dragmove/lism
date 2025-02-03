@@ -12,7 +12,7 @@ import { WindowSize } from '@lism-internal/shared/interfaces/browser';
  * @example
  * ```tsx
  * const { width, height } = useSyncWindowSize();
- * console.log('Current window size:', { width, height });
+ * console.log('window size:', { width, height });
  * ```
  *
  * @remarks

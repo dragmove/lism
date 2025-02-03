@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
  * @example
  * ```tsx
  * const { width, height } = useWindowSize();
- * console.log('Current window size:', { width, height });
+ * console.log('window size:', { width, height });
  * ```
  *
  * @remarks

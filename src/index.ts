@@ -4,6 +4,7 @@ import { default as useDelayedCallback } from './hooks/useDelayedCallback';
 import useInput from './hooks/useInput';
 import useMounted from './hooks/useMounted';
 import useSyncWindowSize from './hooks/useSyncWindowSize';
+import useTouchLeaveRadius from './hooks/useTouchLeaveRadius';
 import useWindowSize from './hooks/useWindowSize';
 import type { WindowSize } from './shared/interfaces/browser';
 import type { ArrayLike, Dictionary, Maybe, Point, Point3d } from './shared/interfaces/common';
@@ -45,6 +46,7 @@ export {
   useInput,
   useMounted,
   useSyncWindowSize,
+  useTouchLeaveRadius,
   useWindowSize,
   WindowSize,
 };
