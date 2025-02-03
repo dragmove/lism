@@ -1,9 +1,5 @@
+import { type WindowSize } from '@lism-internal/shared/interfaces/browser';
 import { useEffect, useState } from 'react';
-
-export interface WindowSize {
-  width: number | undefined;
-  height: number | undefined;
-}
 
 /**
  * A custom hook that returns the current window size (width and height).
@@ -13,7 +9,7 @@ export interface WindowSize {
  * @example
  * ```tsx
  * const { width, height } = useWindowSize();
- * console.log('Current window size:', { width, height });
+ * console.log('window size:', { width, height });
  * ```
  *
  * @remarks
@@ -22,15 +18,15 @@ export interface WindowSize {
  */
 const useWindowSize = (): WindowSize => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: undefined,
-    height: undefined,
+    width: 0,
+    height: 0,
   });
 
   useEffect(() => {
     function handleResize() {
       setWindowSize({
-        width: window?.innerWidth,
-        height: window?.innerHeight,
+        width: window?.innerWidth ?? 0,
+        height: window?.innerHeight ?? 0,
       });
     }
 

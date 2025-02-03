@@ -1,7 +1,4 @@
-export interface WindowSize {
-    width: number | undefined;
-    height: number | undefined;
-}
+import { type WindowSize } from '@lism-internal/shared/interfaces/browser';
 /**
  * A custom hook that returns the current window size (width and height).
  *
@@ -10,7 +7,7 @@ export interface WindowSize {
  * @example
  * ```tsx
  * const { width, height } = useWindowSize();
- * console.log('Current window size:', { width, height });
+ * console.log('window size:', { width, height });
  * ```
  *
  * @remarks
