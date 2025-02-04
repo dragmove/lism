@@ -53,13 +53,13 @@ export function isNumber(value: unknown): value is number {
  *
  * @example
  * ```typescript
- * console.log(isObject(undefined)); // false
- * console.log(isObject(null)); // false
- * console.log(isObject('Hello')); // false
- * console.log(isObject(42)); // false
- * console.log(isObject([])); // false
- * console.log(isObject(() => {})); // false
- * console.log(isObject({})); // true
+ * isObject(undefined); // false
+ * isObject(null); // false
+ * isObject('Hello'); // false
+ * isObject(42); // false
+ * isObject([]); // false
+ * isObject(() => {}); // false
+ * isObject({}); // true
  * ```
  */
 export function isObject(obj: unknown): obj is Record<string, unknown> {
