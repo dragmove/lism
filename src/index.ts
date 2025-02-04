@@ -10,7 +10,7 @@ import type { WindowSize } from './shared/interfaces/browser';
 import type { ArrayLike, Dictionary, Maybe, Point, Point3d } from './shared/interfaces/common';
 import type { Node } from './shared/interfaces/dataStructure';
 import { isLandscape, isPortrait } from './utils/browser';
-import { deepFreeze, isDefined, isError, isNumber } from './utils/common';
+import { deepFreeze, get, isDefined, isError, isNumber } from './utils/common';
 import { el, els, isElement } from './utils/dom';
 import { getGlobal, type GlobalEnv, type GlobalThis } from './utils/env';
 import { clamp, isNegative, isPositive } from './utils/math';
@@ -25,6 +25,7 @@ export {
   Dictionary,
   el,
   els,
+  get,
   getFileExtension,
   getGlobal,
   GlobalEnv,

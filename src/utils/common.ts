@@ -1,9 +1,9 @@
-// @see https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
-
+// TODO: add tsdoc comment
 export function curry2<A, B, R>(fn: (a: A, b: B) => R): (a: A) => (b: B) => R {
   return (a: A) => (b: B) => fn.apply(null, [a, b]);
 }
 
+// TODO: add tsdoc comment
 export function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A) => R {
   return (b: B) => (a: A) => fn.apply(null, [a, b]);
 }
@@ -72,6 +72,28 @@ export function isError<T extends Error>(value: unknown, errorType?: new (...arg
 
   // EvalError, RangeError, ReferenceError, SyntaxError, TypeError, URIError extends Error
   return value instanceof Error;
+}
+
+/**
+ * Retrieves the value associated with a given key from an object.
+ *
+ * @param {T | null | undefined} obj - The object from which to retrieve the value.
+ * @param {string} key - The key whose associated value is to be retrieved.
+ * @returns {T[keyof T] | undefined} The value associated with the key, or `undefined` if the object is not defined or the key does not exist.
+ *
+ * @example
+ * ```typescript
+ * const user = { id: 99, name: 'foo' };
+ * console.log(get(user, 'name')); // 'foo'
+ * console.log(get(user, 'age')); // undefined
+ * console.log(get({}, 'name')); // undefined
+ * console.log(get(undefined, 'name')); // undefined
+ * console.log(get(null, 'name')); // undefined
+ * ```
+ */
+export function get<T extends Record<string, unknown>>(obj: T | null | undefined, key: string): T[keyof T] | undefined {
+  if (!isDefined(obj)) return undefined;
+  return obj[key as keyof T];
 }
 
 /**
