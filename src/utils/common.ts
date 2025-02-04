@@ -1,9 +1,9 @@
-// @see https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
-
+// TODO: add tsdoc comment
 export function curry2<A, B, R>(fn: (a: A, b: B) => R): (a: A) => (b: B) => R {
   return (a: A) => (b: B) => fn.apply(null, [a, b]);
 }
 
+// TODO: add tsdoc comment
 export function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A) => R {
   return (b: B) => (a: A) => fn.apply(null, [a, b]);
 }
