@@ -1,4 +1,4 @@
-import { deepFreeze, get, isDefined, isError, isNumber, isObject } from '@lism-internal/utils/common';
+import { deepFreeze, get, isDefined, isError, isNumber, isObject, keys } from '@lism-internal/utils/common';
 
 describe('isDefined', () => {
   const testCases = [
@@ -191,6 +191,34 @@ describe('isError', () => {
   it('should return true for an instance of CustomError', () => {
     const customError = new CustomError('A custom error occurred');
     expect(isError(customError)).toBe(true);
+  });
+});
+
+describe('keys', () => {
+  it('should return keys of a valid object', () => {
+    const user = { id: 99, name: 'foo' };
+    expect(keys(user)).toEqual(['id', 'name']);
+  });
+
+  it('should return keys for an object with non-string keys', () => {
+    expect(keys({ 1: 'one', 2: 'two' })).toEqual(['1', '2']);
+  });
+
+  it('should return an empty array for an empty object', () => {
+    const emptyObject = {};
+    expect(keys(emptyObject)).toEqual([]);
+  });
+
+  it('should return an empty array for an array', () => {
+    expect(keys([1, 2, 3])).toEqual([]);
+  });
+
+  it('should return an empty array for null', () => {
+    expect(keys(null)).toEqual([]);
+  });
+
+  it('should return an empty array for undefined', () => {
+    expect(keys(undefined)).toEqual([]);
   });
 });
 

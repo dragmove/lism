@@ -96,6 +96,25 @@ export function isError<T extends Error>(value: unknown, errorType?: new (...arg
 }
 
 /**
+ * Retrieves the keys of an object as an array of strings.
+ *
+ * @param {Record<string, unknown>} obj - The object from which to retrieve the keys.
+ * @returns {string[]} An array of strings representing the keys of the object.
+ *
+ * @example
+ * ```typescript
+ * keys({ id: 99, name: 'foo' }); // ['id', 'name']
+ * keys({ 1: 'one', 2: 'two' }); // ['1', '2']
+ * keys({}); // []
+ * keys([]); // []
+ * keys(null); // []
+ * ```
+ */
+export function keys(obj: unknown): string[] {
+  return isObject(obj) ? Object.keys(obj) : [];
+}
+
+/**
  * Retrieves the value associated with a given key from an object.
  *
  * @param {T | null | undefined} obj - The object from which to retrieve the value.
