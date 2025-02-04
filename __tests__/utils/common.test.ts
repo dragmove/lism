@@ -1,4 +1,4 @@
-import { deepFreeze, isDefined, isError, isNumber } from '@lism-internal/utils/common';
+import { deepFreeze, get, isDefined, isError, isNumber } from '@lism-internal/utils/common';
 
 describe('isDefined', () => {
   const testCases = [
@@ -161,6 +161,31 @@ describe('isError', () => {
   it('should return true for an instance of CustomError', () => {
     const customError = new CustomError('A custom error occurred');
     expect(isError(customError)).toBe(true);
+  });
+});
+
+describe('get', () => {
+  it('should return the value associated with the key when the key exists', () => {
+    const obj = { id: 99, name: 'foo' };
+    expect(get(obj, 'name')).toBe('foo');
+  });
+
+  it('should return undefined when the key does not exist', () => {
+    const obj = { id: 99, name: 'foo' };
+    expect(get(obj, 'age')).toBeUndefined();
+  });
+
+  it('should return undefined when the object is an empty object', () => {
+    const obj = {};
+    expect(get(obj, 'name')).toBeUndefined();
+  });
+
+  it('should return undefined when the object is undefined', () => {
+    expect(get(undefined, 'name')).toBeUndefined();
+  });
+
+  it('should return undefined when the object is null', () => {
+    expect(get(null, 'name')).toBeUndefined();
   });
 });
 

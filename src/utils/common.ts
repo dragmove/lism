@@ -75,6 +75,28 @@ export function isError<T extends Error>(value: unknown, errorType?: new (...arg
 }
 
 /**
+ * Retrieves the value associated with a given key from an object.
+ *
+ * @param {T | null | undefined} obj - The object from which to retrieve the value.
+ * @param {string} key - The key whose associated value is to be retrieved.
+ * @returns {T[keyof T] | undefined} The value associated with the key, or `undefined` if the object is not defined or the key does not exist.
+ *
+ * @example
+ * ```typescript
+ * const user = { id: 99, name: 'foo' };
+ * console.log(get(user, 'name')); // 'foo'
+ * console.log(get(user, 'age')); // undefined
+ * console.log(get({}, 'name')); // undefined
+ * console.log(get(undefined, 'name')); // undefined
+ * console.log(get(null, 'name')); // undefined
+ * ```
+ */
+export function get<T extends Record<string, unknown>>(obj: T | null | undefined, key: string): T[keyof T] | unknown {
+  if (!isDefined(obj)) return undefined;
+  return obj[key];
+}
+
+/**
  * Performs a deep freeze on an object, making all its properties immutable.
  * This function recursively calls itself on all nested objects,
  * ultimately ensuring that all properties are read-only.
