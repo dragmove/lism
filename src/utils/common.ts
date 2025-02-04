@@ -91,9 +91,9 @@ export function isError<T extends Error>(value: unknown, errorType?: new (...arg
  * console.log(get(null, 'name')); // undefined
  * ```
  */
-export function get<T extends Record<string, unknown>>(obj: T | null | undefined, key: string): T[keyof T] | unknown {
+export function get<T extends Record<string, unknown>>(obj: T | null | undefined, key: string): T[keyof T] | undefined {
   if (!isDefined(obj)) return undefined;
-  return obj[key];
+  return obj[key as keyof T];
 }
 
 /**

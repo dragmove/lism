@@ -65,7 +65,7 @@ export declare function isError<T extends Error>(value: unknown, errorType?: new
  * console.log(get(null, 'name')); // undefined
  * ```
  */
-export declare function get<T extends Record<string, unknown>>(obj: T | null | undefined, key: string): T[keyof T] | unknown;
+export declare function get<T extends Record<string, unknown>>(obj: T | null | undefined, key: string): T[keyof T] | undefined;
 /**
  * Performs a deep freeze on an object, making all its properties immutable.
  * This function recursively calls itself on all nested objects,
