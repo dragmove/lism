@@ -1,4 +1,4 @@
-import { deepFreeze, get, isDefined, isError, isNumber } from '@lism-internal/utils/common';
+import { deepFreeze, get, isDefined, isError, isNumber, isObject } from '@lism-internal/utils/common';
 
 describe('isDefined', () => {
   const testCases = [
@@ -53,6 +53,36 @@ describe('isNumber', () => {
   it('should return false for objects and arrays', () => {
     expect(isNumber({ a: 1 })).toBe(false);
     expect(isNumber([1, 2, 3])).toBe(false);
+  });
+});
+
+describe('isObject', () => {
+  test('should return false for undefined', () => {
+    expect(isObject(undefined)).toBe(false);
+  });
+
+  test('should return false for null', () => {
+    expect(isObject(null)).toBe(false);
+  });
+
+  test('should return false for a string', () => {
+    expect(isObject('Hello')).toBe(false);
+  });
+
+  test('should return false for a number', () => {
+    expect(isObject(42)).toBe(false);
+  });
+
+  test('should return false for an array', () => {
+    expect(isObject([])).toBe(false);
+  });
+
+  test('should return false for a function', () => {
+    expect(isObject(() => {})).toBe(false);
+  });
+
+  test('should return true for an object', () => {
+    expect(isObject({})).toBe(true);
   });
 });
 
