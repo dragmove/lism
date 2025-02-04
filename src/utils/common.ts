@@ -46,6 +46,27 @@ export function isNumber(value: unknown): value is number {
 }
 
 /**
+ * Checks if a value is an object
+ *
+ * @param {unknown} obj - The value to check.
+ * @returns {obj is Record<string, unknown>} - Returns `true` if the value is an object, otherwise `false`.
+ *
+ * @example
+ * ```typescript
+ * console.log(isObject(undefined)); // false
+ * console.log(isObject(null)); // false
+ * console.log(isObject('Hello')); // false
+ * console.log(isObject(42)); // false
+ * console.log(isObject([])); // false
+ * console.log(isObject(() => {})); // false
+ * console.log(isObject({})); // true
+ * ```
+ */
+export function isObject(obj: unknown): obj is Record<string, unknown> {
+  return typeof obj === 'object' && !!obj && !Array.isArray(obj);
+}
+
+/**
  * Checks if a value is an instance of Error or a specific error type.
  * @template T - A specific error type that extends the `Error` class.
  *
