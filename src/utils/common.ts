@@ -1,3 +1,5 @@
+import { Dict, Maybe } from '@lism-internal/shared/interfaces/common';
+
 // TODO: add tsdoc comment
 export function curry2<A, B, R>(fn: (a: A, b: B) => R): (a: A) => (b: B) => R {
   return (a: A) => (b: B) => fn.apply(null, [a, b]);
@@ -23,7 +25,7 @@ export function curryr2<A, B, R>(fn: (a: A, b: B) => R): (b: B) => (a: A) => R {
  * isDefined('Hello'); // true
  * ```
  */
-export function isDefined<T>(value: T | null | undefined): value is T {
+export function isDefined<T>(value: Maybe<T>): value is T {
   return value !== null && value !== undefined;
 }
 
@@ -43,6 +45,27 @@ export function isDefined<T>(value: T | null | undefined): value is T {
 export function isNumber(value: unknown): value is number {
   if (!isDefined(value)) return false;
   return typeof value === 'number' && !isNaN(value);
+}
+
+/**
+ * Checks if a value is an object
+ *
+ * @param {unknown} obj - The value to check.
+ * @returns {obj is object} - Returns `true` if the value is an object, otherwise(primitive values) `false`.
+ *
+ * @example
+ * ```typescript
+ * isObject({}); // true
+ * isObject([]); // true
+ * isObject(undefined); // false
+ * isObject(null); // false
+ * isObject('Hello'); // false
+ * isObject(42); // false
+ * isObject(() => {}); // false
+ * ```
+ */
+export function isObject(obj: unknown): obj is object {
+  return typeof obj === 'object' && !!obj;
 }
 
 /**
@@ -75,6 +98,52 @@ export function isError<T extends Error>(value: unknown, errorType?: new (...arg
 }
 
 /**
+ * Retrieves the keys of an object as an array of strings.
+ *
+ * @param {unknown} obj - The object from which to retrieve the keys.
+ * @returns {string[]} An array of strings representing the keys of the object.
+ *
+ * @example
+ * ```typescript
+ * keys({ id: 99, name: 'foo' }); // ['id', 'name']
+ * keys({ 1: 'one', 2: 'two' }); // ['1', '2']
+ * keys({}); // []
+ * keys([]); // []
+ * keys([1, 2, 3] // ['0', '1', '2']
+ * keys(null); // []
+ * keys(undefined); // []
+ * ```
+ */
+export function keys(obj: unknown): string[] {
+  return isObject(obj) ? Object.keys(obj) : [];
+}
+
+/**
+ * Iterates over the elements of a list (array or object) and applies a given function to each item.
+ * This function supports both arrays and objects.(allowing for polymorphic behavior.)
+ *
+ * @param {unknown} list - The list(array or object) to iterate over.
+ * @param {(item: unknown) => void} iterateeFn - The function to apply to each item in the list.
+ *
+ * @example
+ * ```typescript
+ * each([1, 2, 3], (item) => console.log(item)); // 1, 2, 3
+ * each({ id: 99, name: 'foo' }, (value) => console.log(value)); // 99, 'foo'
+ * ```
+ */
+export function each(list: unknown, iterateeFn: (item: unknown) => void): unknown {
+  // deal with array and object type (polymorphism)
+  const _keys = keys(list);
+
+  for (const key of _keys) {
+    const value = Array.isArray(list) ? list[+key] : (list as Dict)[key];
+    iterateeFn(value);
+  }
+
+  return list;
+}
+
+/**
  * Retrieves the value associated with a given key from an object.
  *
  * @param {T | null | undefined} obj - The object from which to retrieve the value.
@@ -91,7 +160,7 @@ export function isError<T extends Error>(value: unknown, errorType?: new (...arg
  * console.log(get(null, 'name')); // undefined
  * ```
  */
-export function get<T extends Record<string, unknown>>(obj: T | null | undefined, key: string): T[keyof T] | undefined {
+export function get<T extends Dict>(obj: Maybe<T>, key: string): T[keyof T] | undefined {
   if (!isDefined(obj)) return undefined;
   return obj[key as keyof T];
 }
@@ -101,7 +170,7 @@ export function get<T extends Record<string, unknown>>(obj: T | null | undefined
  * This function recursively calls itself on all nested objects,
  * ultimately ensuring that all properties are read-only.
  *
- * @param {Record<string, unknown>} obj - The object to be frozen
+ * @param {T} obj - The object to be frozen
  * @returns {T} The frozen object
  *
  * @example
