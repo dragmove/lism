@@ -1,4 +1,4 @@
-import { deepFreeze, get, isDefined, isError, isNumber, isObject, keys } from '@lism-internal/utils/common';
+import { deepFreeze, each, get, isDefined, isError, isNumber, isObject, keys } from '@lism-internal/utils/common';
 
 describe('isDefined', () => {
   const testCases = [
@@ -73,16 +73,24 @@ describe('isObject', () => {
     expect(isObject(42)).toBe(false);
   });
 
-  test('should return false for an array', () => {
-    expect(isObject([])).toBe(false);
-  });
-
   test('should return false for a function', () => {
     expect(isObject(() => {})).toBe(false);
   });
 
   test('should return true for an object', () => {
     expect(isObject({})).toBe(true);
+  });
+
+  test('should return true for an array', () => {
+    expect(isObject([])).toBe(true);
+  });
+
+  test('should return true for an RegExp instance', () => {
+    expect(isObject(new RegExp(/foo/))).toBe(true);
+  });
+
+  test('should return true for an Map instance', () => {
+    expect(isObject(new Map())).toBe(true);
   });
 });
 
@@ -209,8 +217,8 @@ describe('keys', () => {
     expect(keys(emptyObject)).toEqual([]);
   });
 
-  it('should return an empty array for an array', () => {
-    expect(keys([1, 2, 3])).toEqual([]);
+  it('should return keys for an array', () => {
+    expect(keys([1, 2, 3])).toEqual(['0', '1', '2']);
   });
 
   it('should return an empty array for null', () => {
@@ -219,6 +227,74 @@ describe('keys', () => {
 
   it('should return an empty array for undefined', () => {
     expect(keys(undefined)).toEqual([]);
+  });
+});
+
+describe('each', () => {
+  it('should call iterateeFn for each item in an array', () => {
+    const mockFn = jest.fn();
+
+    each([99, 7, 15], mockFn);
+
+    expect(mockFn).toHaveBeenCalledTimes(3);
+    expect(mockFn).toHaveBeenCalledWith(99);
+    expect(mockFn).toHaveBeenCalledWith(7);
+    expect(mockFn).toHaveBeenCalledWith(15);
+  });
+
+  it('should call iterateeFn for each property in an object', () => {
+    const mockFn = jest.fn();
+
+    each({ a: 11, b: 22, c: 33 }, mockFn);
+
+    expect(mockFn).toHaveBeenCalledTimes(3);
+    expect(mockFn).toHaveBeenCalledWith(11);
+    expect(mockFn).toHaveBeenCalledWith(22);
+    expect(mockFn).toHaveBeenCalledWith(33);
+  });
+
+  it('should handle an empty array', () => {
+    const mockFn = jest.fn();
+
+    each([], mockFn);
+
+    expect(mockFn).not.toHaveBeenCalled();
+  });
+
+  it('should handle an empty object', () => {
+    const mockFn = jest.fn();
+
+    each({}, mockFn);
+
+    expect(mockFn).not.toHaveBeenCalled();
+  });
+
+  it('should handle null gracefully', () => {
+    const mockFn = jest.fn();
+
+    expect(() => each(null, mockFn)).not.toThrow();
+    expect(mockFn).not.toHaveBeenCalled();
+  });
+
+  it('should handle undefined gracefully', () => {
+    const mockFn = jest.fn();
+
+    expect(() => each(undefined, mockFn)).not.toThrow();
+    expect(mockFn).not.toHaveBeenCalled();
+  });
+
+  it('should handle a RegExp instance gracefully', () => {
+    const mockFn = jest.fn();
+
+    expect(() => each(new RegExp(/foo/), mockFn)).not.toThrow();
+    expect(mockFn).not.toHaveBeenCalled();
+  });
+
+  it('should handle a Map instance gracefully', () => {
+    const mockFn = jest.fn();
+
+    expect(() => each(new Map(), mockFn)).not.toThrow();
+    expect(mockFn).not.toHaveBeenCalled();
   });
 });
 
@@ -248,7 +324,7 @@ describe('get', () => {
 });
 
 describe('deepFreeze', () => {
-  const sampleObj: any = {
+  const sampleObj = {
     a: 1,
     b: 'foo',
     c: {

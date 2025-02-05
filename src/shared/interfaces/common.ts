@@ -22,11 +22,9 @@ export interface ArrayLike<T> {
  * Represents a dictionary object with string keys and values of type `T`.
  * Useful for creating objects with dynamic keys.
  *
- * @template T - The type of values in the dictionary.
+ * @template T - The type of values stored in the dictionary. Defaults to `unknown`.
  */
-export interface Dictionary<T = any> {
-  [key: string]: T;
-}
+export type Dict<T = unknown> = Record<string, T>;
 
 /**
  * Represents a 2D point with x and y coordinates.

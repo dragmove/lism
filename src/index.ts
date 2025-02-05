@@ -7,7 +7,7 @@ import useSyncWindowSize from './hooks/useSyncWindowSize';
 import useTouchLeaveRadius from './hooks/useTouchLeaveRadius';
 import useWindowSize from './hooks/useWindowSize';
 import type { WindowSize } from './shared/interfaces/browser';
-import type { ArrayLike, Dictionary, Maybe, Point, Point3d } from './shared/interfaces/common';
+import type { ArrayLike, Dict, Maybe, Point, Point3d } from './shared/interfaces/common';
 import type { Node } from './shared/interfaces/dataStructure';
 import { isLandscape, isPortrait } from './utils/browser';
 import { deepFreeze, each, get, isDefined, isError, isNumber, isObject, keys } from './utils/common';
@@ -22,7 +22,7 @@ export {
   deepFreeze,
   DelayedFallback,
   DelayedFallbackProps,
-  Dictionary,
+  Dict,
   each,
   el,
   els,
